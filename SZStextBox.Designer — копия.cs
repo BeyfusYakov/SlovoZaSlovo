@@ -35,25 +35,21 @@
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(79, 13);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.textBox1.Location = new System.Drawing.Point(0, 0);
             this.textBox1.MaxLength = 1;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(35, 41);
+            this.textBox1.Size = new System.Drawing.Size(41, 41);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // SZStextBox
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.SystemColors.Info;
             this.Controls.Add(this.textBox1);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ForeColor = System.Drawing.Color.DimGray;
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "SZStextBox";
-            this.Size = new System.Drawing.Size(210, 74);
+            this.Size = new System.Drawing.Size(41, 41);
             this.ResumeLayout(false);
             this.PerformLayout();
 
