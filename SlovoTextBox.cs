@@ -22,12 +22,116 @@ namespace SlovoZaSlovo
         }
         private FactorValue factor;
 
-        public FactorValue Factor { get => factor; set => factor = value; }
+        public FactorValue Factor 
+        { 
+            get => factor;
+            set 
+            { 
+                factor = value;
+
+                switch (value)
+                {
+                    case FactorValue.None:
+                        this.UClabel.Text = string.Empty;
+                        break;
+                    case FactorValue.C2:
+                        this.UClabel.ForeColor = Color.Blue;
+                        this.UClabel.Text = FactorValue.C2.ToString();
+                        break;
+                    case FactorValue.C3:
+                        this.UClabel.ForeColor = Color.Blue;
+                        this.UClabel.Text = FactorValue.C3.ToString();
+                        break;
+                    case FactorValue.x2:
+                        this.UClabel.ForeColor = Color.Red;
+                        this.UClabel.Text = FactorValue.x2.ToString();
+                        break;
+                    case FactorValue.x3:
+                        this.UClabel.ForeColor = Color.Red;
+                        this.UClabel.Text = FactorValue.x3.ToString();
+                        break;
+                    default:
+                        break;
+                }
+            } 
+        }
+
+        //new public string Text { get => text; set => text = value; }
+
+        //private string text;
+
+        
+
+
 
         public SlovoTextBox()
         {
             InitializeComponent();
-            this.UClabel.Text = ((int)FactorValue.C2).ToString();
+            if (factor != FactorValue.None)
+            this.UClabel.Text = factor.ToString();
+            else
+            {
+                this.UClabel.Text = "";
+            }
+
+            this.UCtextBox.Text = "";
+        }
+
+        //protected override void OnPaint(PaintEventArgs e)
+        //{
+        //    base.OnPaint(e);
+        //}
+
+        //protected override void OnClick(EventArgs e)
+        //{
+        //    base.OnClick(e);
+         
+
+        //}
+
+        private void UCtextBox_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Click");
+            switch (Factor)
+            {
+                case FactorValue.None:
+                    Factor = FactorValue.C2;
+                    break;
+                case FactorValue.C2:
+                    Factor = FactorValue.C3;
+                    break;
+                case FactorValue.C3:
+                    Factor = FactorValue.x2;
+                    break;
+                case FactorValue.x2:
+                    Factor = FactorValue.x3;
+                    break;
+                case FactorValue.x3:
+                    Factor = FactorValue.None;
+                    break;
+            }
+        }
+
+        private void UClabel_Click(object sender, EventArgs e)
+        {
+            //switch (Factor)
+            //{
+            //    case FactorValue.None:
+            //        Factor = FactorValue.C2;
+            //        break;
+            //    case FactorValue.C2:
+            //        Factor = FactorValue.C3;
+            //        break;
+            //    case FactorValue.C3:
+            //        Factor = FactorValue.x2;
+            //        break;
+            //    case FactorValue.x2:
+            //        Factor = FactorValue.x3;
+            //        break;
+            //    case FactorValue.x3:
+            //        Factor = FactorValue.None;
+            //        break;
+            //}
         }
     }
 }
