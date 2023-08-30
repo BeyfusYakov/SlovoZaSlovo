@@ -56,11 +56,7 @@ namespace SlovoZaSlovo
             } 
         }
 
-        //new public string Text { get => text; set => text = value; }
-
-        //private string text;
-
-        
+        override public string Text { get => UCtextBox.Text; set => UCtextBox.Text = value; }
 
 
 
@@ -76,18 +72,6 @@ namespace SlovoZaSlovo
 
             this.UCtextBox.Text = "";
         }
-
-        //protected override void OnPaint(PaintEventArgs e)
-        //{
-        //    base.OnPaint(e);
-        //}
-
-        //protected override void OnClick(EventArgs e)
-        //{
-        //    base.OnClick(e);
-         
-
-        //}
 
         private void UCtextBox_Click(object sender, EventArgs e)
         {

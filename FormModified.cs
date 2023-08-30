@@ -20,22 +20,29 @@ namespace SlovoZaSlovo
 
         private async void startButton_Click(object sender, EventArgs e)
         {
-            char[,,] charArr  = new char[5,5,2];
+            char[,] charArr  = new char[5,5];
+            List<Answer> answerArr = new List<Answer>();
 
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 5; j++)
                 {
-                    if (!string.IsNullOrEmpty((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).UCtextBox.Text))
-                        charArr[i, j, 0] = Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).UCtextBox.Text);
-                        charArr[i, j, 1] = Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor);
+                    if (!string.IsNullOrEmpty((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text))
+                    {
+                        charArr[i, j] = Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text);
+ //                       charArr[i, j, 1] = Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor);
+                    }
                 }
             }
 
-            //wordsListBox.Items.Add(slovoTextBox14.Text);
+            answerArr = WordClass.Find(ref charArr);
+
+
+
+
+
 
             string path = "russian_nouns.txt";
-            //string data;
 
 
             #region первый вариант
@@ -51,16 +58,47 @@ namespace SlovoZaSlovo
             ///
             /// оба варианта работают практически одинаково долго)
             ///
-            using (StreamReader reader = new StreamReader(path))
-            {
-                //List<string> myList = new List<string>();
-                while (!reader.EndOfStream)
-                {
-                    //myList.Add(reader.ReadLine()); //В лист работает гораздо быстрее
-                    wordsListBox.Items.Add(reader.ReadLine());
-                }
-            }
+            ////using StreamReader reader = new StreamReader(path);
+            ////while (!reader.EndOfStream)
+            ////{
+            ////    //myList.Add(reader.ReadLine()); //В лист работает гораздо быстрее
+            ////    wordsListBox.Items.Add(reader.ReadLine());
+            ////}
             #endregion
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            (letterPanel.Controls[$"slovoTextBox{1}{1}"] as SlovoTextBox).Text = "A";
+            (letterPanel.Controls[$"slovoTextBox{1}{2}"] as SlovoTextBox).Text = "Р";
+            (letterPanel.Controls[$"slovoTextBox{1}{3}"] as SlovoTextBox).Text = "Б";
+            (letterPanel.Controls[$"slovoTextBox{1}{4}"] as SlovoTextBox).Text = "У";
+            (letterPanel.Controls[$"slovoTextBox{1}{5}"] as SlovoTextBox).Text = "З";
+
+            (letterPanel.Controls[$"slovoTextBox{2}{1}"] as SlovoTextBox).Text = "З";
+            (letterPanel.Controls[$"slovoTextBox{2}{2}"] as SlovoTextBox).Text = "И";
+            (letterPanel.Controls[$"slovoTextBox{2}{3}"] as SlovoTextBox).Text = "П";
+            (letterPanel.Controls[$"slovoTextBox{2}{4}"] as SlovoTextBox).Text = "У";
+            (letterPanel.Controls[$"slovoTextBox{2}{5}"] as SlovoTextBox).Text = "Н";
+
+            (letterPanel.Controls[$"slovoTextBox{3}{1}"] as SlovoTextBox).Text = "А";
+            (letterPanel.Controls[$"slovoTextBox{3}{2}"] as SlovoTextBox).Text = "К";
+            (letterPanel.Controls[$"slovoTextBox{3}{3}"] as SlovoTextBox).Text = "У";
+            (letterPanel.Controls[$"slovoTextBox{3}{4}"] as SlovoTextBox).Text = "Л";
+            (letterPanel.Controls[$"slovoTextBox{3}{5}"] as SlovoTextBox).Text = "А";
+
+            (letterPanel.Controls[$"slovoTextBox{4}{1}"] as SlovoTextBox).Text = "К";
+            (letterPanel.Controls[$"slovoTextBox{4}{2}"] as SlovoTextBox).Text = "Р";
+            (letterPanel.Controls[$"slovoTextBox{4}{3}"] as SlovoTextBox).Text = "У";
+            (letterPanel.Controls[$"slovoTextBox{4}{4}"] as SlovoTextBox).Text = "А";
+            (letterPanel.Controls[$"slovoTextBox{4}{5}"] as SlovoTextBox).Text = "С";
+
+            (letterPanel.Controls[$"slovoTextBox{5}{1}"] as SlovoTextBox).Text = "Б";
+            (letterPanel.Controls[$"slovoTextBox{5}{2}"] as SlovoTextBox).Text = "О";
+            (letterPanel.Controls[$"slovoTextBox{5}{3}"] as SlovoTextBox).Text = "Т";
+            (letterPanel.Controls[$"slovoTextBox{5}{4}"] as SlovoTextBox).Text = "Н";
+            (letterPanel.Controls[$"slovoTextBox{5}{5}"] as SlovoTextBox).Text = "А";
 
         }
     }

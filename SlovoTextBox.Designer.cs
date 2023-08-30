@@ -94,10 +94,8 @@
 
         #endregion
 
-        public System.Windows.Forms.TextBox UCtextBox;
+        private System.Windows.Forms.TextBox UCtextBox;
         private System.Windows.Forms.Label UClabel;
         private System.Windows.Forms.Panel UCPanel;
-
-        override public string Text { get => UCtextBox.Text; set => UCtextBox.Text = value; }
     }
 }

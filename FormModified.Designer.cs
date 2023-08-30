@@ -56,14 +56,15 @@
             this.slovoTextBox14 = new SlovoZaSlovo.SlovoTextBox();
             this.slovoTextBox13 = new SlovoZaSlovo.SlovoTextBox();
             this.slovoTextBox12 = new SlovoZaSlovo.SlovoTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.letterPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(21, 357);
+            this.startButton.Location = new System.Drawing.Point(101, 357);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(325, 42);
+            this.startButton.Size = new System.Drawing.Size(245, 42);
             this.startButton.TabIndex = 46;
             this.startButton.Text = "СТАРТ";
             this.startButton.UseVisualStyleBackColor = true;
@@ -309,11 +310,22 @@
             this.slovoTextBox12.Size = new System.Drawing.Size(60, 60);
             this.slovoTextBox12.TabIndex = 27;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(13, 358);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(82, 41);
+            this.button1.TabIndex = 49;
+            this.button1.Text = "Заполнить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormModified
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.letterPanel);
             this.Controls.Add(this.wordsListBox);
             this.Controls.Add(this.startButton);
@@ -353,5 +365,6 @@
         private SlovoTextBox slovoTextBox14;
         private SlovoTextBox slovoTextBox13;
         private SlovoTextBox slovoTextBox12;
+        private System.Windows.Forms.Button button1;
     }
 }
