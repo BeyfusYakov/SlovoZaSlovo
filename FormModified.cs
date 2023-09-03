@@ -20,7 +20,7 @@ namespace SlovoZaSlovo
 
         private async void startButton_Click(object sender, EventArgs e)
         {
-            char[,] charArr  = new char[5,5];
+            Point[,] charArr  = new Point[5,5];
             List<Answer> answerList = new List<Answer>();
             List<string> wordsList = new List<string>();
             string path = "russian_nouns.txt";
@@ -54,12 +54,18 @@ namespace SlovoZaSlovo
                 {
                     if (!string.IsNullOrEmpty((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text))
                     {
-                        charArr[i, j] = Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text);
- //                       charArr[i, j, 1] = Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor);
+                        charArr[i, j] = new Point(i,j,Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text), (byte)((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor));
                     }
                 }
             }
 
+            //wordsListBox.Items.Add(charArr[0,0].Val == charArr[0, 1].Val);
+            //List<Point> charArr2 = new List<Point>() { charArr[0, 0], charArr[0, 1], charArr[0, 2] };
+            //List<Point> charArr3 = new List<Point>() { charArr[0, 0], charArr[0, 1], charArr[0, 2] };
+            //wordsListBox.Items.Add(charArr2 == charArr3);
+            // wordsListBox.Items.Add(charArr2.SequenceEqual(charArr3));
+            
+            
             answerList = WordClass.Find(charArr, wordsList);
 
             //wordsListBox.Items.AddRange(answerList.ToArray());
@@ -73,8 +79,8 @@ namespace SlovoZaSlovo
 
         private void button1_Click(object sender, EventArgs e)
         {
-            (letterPanel.Controls[$"slovoTextBox{1}{1}"] as SlovoTextBox).Text = "A";
-            (letterPanel.Controls[$"slovoTextBox{1}{2}"] as SlovoTextBox).Text = "Р";
+            (letterPanel.Controls[$"slovoTextBox{1}{1}"] as SlovoTextBox).Text = "А";
+            (letterPanel.Controls[$"slovoTextBox{1}{2}"] as SlovoTextBox).Text = "А";
             (letterPanel.Controls[$"slovoTextBox{1}{3}"] as SlovoTextBox).Text = "Б";
             (letterPanel.Controls[$"slovoTextBox{1}{4}"] as SlovoTextBox).Text = "У";
             (letterPanel.Controls[$"slovoTextBox{1}{5}"] as SlovoTextBox).Text = "З";

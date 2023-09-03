@@ -10,13 +10,19 @@ namespace SlovoZaSlovo
     public record Point
     {
         private int x;
-        private int y;
         public int X { get => x; set => x = value; }
+        private int y;
         public int Y { get => y; set => y = value; }
-        public Point(int x, int y)
+        private char val;
+        public char Val { get => val; set => val = value; }
+        private int factor;
+        public int Factor { get => factor; set => factor = value; }
+        public Point(int x, int y, char val, int factor = 0)
         {
             this.X = x;
             this.Y = y;
+            this.Val = val;
+            this.factor = factor;
         }
     }
 
