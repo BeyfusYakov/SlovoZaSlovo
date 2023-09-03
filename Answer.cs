@@ -10,7 +10,7 @@ namespace SlovoZaSlovo
     {
         public string word { get; set; }
         public int cost { get; set; }
-        public List<Point> Points = new List<Point>();
+        public List<Point> points = new List<Point>();
 
     }
 }

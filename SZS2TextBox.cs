@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing;
+//using System.Drawing;
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SlovoZaSlovo

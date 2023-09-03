@@ -21,27 +21,8 @@ namespace SlovoZaSlovo
         private async void startButton_Click(object sender, EventArgs e)
         {
             char[,] charArr  = new char[5,5];
-            List<Answer> answerArr = new List<Answer>();
-
-            for (int i = 0; i < 5; i++)
-            {
-                for (int j = 0; j < 5; j++)
-                {
-                    if (!string.IsNullOrEmpty((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text))
-                    {
-                        charArr[i, j] = Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text);
- //                       charArr[i, j, 1] = Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor);
-                    }
-                }
-            }
-
-            answerArr = WordClass.Find(ref charArr);
-
-
-
-
-
-
+            List<Answer> answerList = new List<Answer>();
+            List<string> wordsList = new List<string>();
             string path = "russian_nouns.txt";
 
 
@@ -58,13 +39,35 @@ namespace SlovoZaSlovo
             ///
             /// оба варианта работают практически одинаково долго)
             ///
-            ////using StreamReader reader = new StreamReader(path);
-            ////while (!reader.EndOfStream)
-            ////{
-            ////    //myList.Add(reader.ReadLine()); //В лист работает гораздо быстрее
-            ////    wordsListBox.Items.Add(reader.ReadLine());
-            ////}
+            using StreamReader reader = new StreamReader(path);
+            while (!reader.EndOfStream)
+            {
+                wordsList.Add(reader.ReadLine()); //В лист работает гораздо быстрее
+                //wordsListBox.Items.Add(reader.ReadLine());
+            }
             #endregion
+
+
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    if (!string.IsNullOrEmpty((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text))
+                    {
+                        charArr[i, j] = Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text);
+ //                       charArr[i, j, 1] = Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor);
+                    }
+                }
+            }
+
+            answerList = WordClass.Find(charArr, wordsList);
+
+            //wordsListBox.Items.AddRange(answerList.ToArray());
+            for (int i = 0; i < answerList.Count; i++)
+            {
+                wordsListBox.Items.Add(answerList.ElementAt(i).word +" - " +answerList.ElementAt(i).cost);
+            }
+
 
         }
 
