@@ -8,14 +8,17 @@ namespace SlovoZaSlovo
 {
     internal static class WordClass
     {
+        static List<List<Point>> allVers = new();
+        static List<Answer> answers = new List<Answer>();
+
         public static List<Answer> Find(ref char[,] Arr, List<string> Source) //ref нельзя в локальных функциях?
         {
-            List<List<Point>> allVers = new();
+            
 
             int rows = Arr.GetLength(0);
             int cols = Arr.GetLength(1);
 
-            List <Answer> answers = new List <Answer>();
+
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < cols; j++)
@@ -38,7 +41,7 @@ namespace SlovoZaSlovo
             return sb.ToString();
         }
 
-        void FindLocFunc(List<Point> lp)
+        static void FindLocFunc(List<Point> lp)
         {
             allVers.Add(lp);
             if (Source.Contains(ComposeWord(Arr, lp)))
