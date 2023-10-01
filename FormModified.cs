@@ -59,6 +59,8 @@ namespace SlovoZaSlovo
                 }
             }
 
+
+
             //wordsListBox.Items.Add(charArr[0,0].Val == charArr[0, 1].Val);
             //List<Point> charArr2 = new List<Point>() { charArr[0, 0], charArr[0, 1], charArr[0, 2] };
             //List<Point> charArr3 = new List<Point>() { charArr[0, 0], charArr[0, 1], charArr[0, 2] };

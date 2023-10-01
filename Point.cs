@@ -24,6 +24,11 @@ namespace SlovoZaSlovo
             this.Val = val;
             this.factor = factor;
         }
+        public string GetName()
+        {
+            return $"{X}.{Y}";
+        }
+
     }
 
 }
