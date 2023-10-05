@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,89 +9,66 @@ namespace SlovoZaSlovo
 {
     internal static class WordClass
     {
-        public static List<List<Point>> variantCollection = new();
-        public static List<Answer> Find(Point[,] Arr, List<string> Source)
+        public static List<List<Point>> VariantCollection = new(); // хранит все получившиеся варианты
+        public static List<List<Point>> VariantList = new(); //использую для хранения обрабатываемых элементов, для добавления к ним по одной букве
+        public static List<Answer> Answers = new List<Answer>(); //коллекция ответов
+        public static List<Answer> Find(Graph slovoGraph, List<string> source)
         {
+            Point[,] Arr = slovoGraph.Points;
             int rows = Arr.GetLength(0);
             int cols = Arr.GetLength(1);
 
-            List <Answer> answers = new List <Answer>();
+
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < cols; j++)
                 {
                     {
-                        FindLocFunc(new List<Point>() { Arr[i,j] });
+                        //FindLocFunc(new List<Point>() { Arr[i,j] });
+                        //VariantList.Add(new List<Point> { Arr[i, j] });
+                        //FindFunc(VariantList);
+                        VariantCollection.Add(new List<Point> { Arr[i, j] });
+                        FindFunc(VariantCollection.Last());
                     }
                 }
+            }
+            Answers.Add(new Answer("кпст", 10, new List<Point>()));
+
+            void FindFunc(List<Point> points)
+            {
+                var NextPointList = slovoGraph.GetPointsList(points.Last());
+                foreach (var NextPoint in NextPointList)
+                {
+                    if (!VariantCollection.Last().Contains(NextPoint))
+                    {
+                        VariantCollection.Add(points.CloneAndAdd(NextPoint));
+                        if (source.Contains( ComposeWord(VariantCollection.Last())) )
+                        { Answers.Add(new Answer(ComposeWord(VariantCollection.Last()), 0, VariantCollection.Last())); }
+                        FindFunc(VariantCollection.Last());
+                    }
+                }
+
             }
 
             void FindLocFunc(List<Point> lp)
             {
+                Stack<Point> stack = new Stack<Point>();
+                stack.Push(lp[0]);
 
-                if (Source.Contains(ComposeWord(lp))  )
+                if (source.Contains(ComposeWord(lp))  )
                 {
-                    answers.Add(new Answer { word = ComposeWord(lp), cost = 0, points = lp });
+                    Answers.Add(new Answer (ComposeWord(lp), 0, lp));
                 }
 
-                variantCollection.Add(lp.CLone());
+                //variantCollection.Add(lp.CLone());
                 //lp.RemoveAt(lp.Count - 1);
 
                 Point lastPoint = lp.Last();
                 if (lp.Count < 25)
-                {
-                    //if (lastPoint.X - 1 >= 0 && lastPoint.Y - 1 >= 0 && !lp.Contains(Arr[lastPoint.X - 1, lastPoint.Y - 1]) )//&& !variantCollection.Any(x => x.SequenceEqual(lp+ Arr[lastPoint.X - 1, lastPoint.Y - 1])))
-                    if (lastPoint.X - 1 >= 0 && lastPoint.Y - 1 >= 0 && !lp.Contains(Arr[lastPoint.X - 1, lastPoint.Y - 1]) && !variantCollection.Any(x => x.SequenceEqual(lp.CLoneAndAdd(Arr[lastPoint.X - 1, lastPoint.Y - 1]) )))
+                { 
 
-                    {
-                            lp.Add(Arr[lastPoint.X - 1, lastPoint.Y - 1]);
-                        FindLocFunc(lp);
-                        lp.RemoveAt(lp.Count - 1);
-                    }
-                    if (lastPoint.X - 1 >= 0 && !lp.Contains(Arr[lastPoint.X - 1, lastPoint.Y]) && !variantCollection.Any(x => x.SequenceEqual(lp.CLoneAndAdd(Arr[lastPoint.X - 1, lastPoint.Y]))))
-                    {
-                        lp.Add(Arr[lastPoint.X - 1, lastPoint.Y]);
-                        FindLocFunc(lp);
-                        lp.RemoveAt(lp.Count - 1);
-                    }
-
-                    if (lastPoint.X - 1 >= 0 && lastPoint.Y + 1 < cols && !lp.Contains(Arr[lastPoint.X - 1, lastPoint.Y + 1]) && !variantCollection.Any(x => x.SequenceEqual(lp.CLoneAndAdd(Arr[lastPoint.X - 1, lastPoint.Y + 1]))))
-                    {
-                        lp.Add(Arr[lastPoint.X - 1, lastPoint.Y + 1]);
-                        FindLocFunc(lp);
-                        lp.RemoveAt(lp.Count - 1);
-                    }
-                    if (lastPoint.Y - 1 >= 0 && !lp.Contains(Arr[lastPoint.X, lastPoint.Y - 1]) && !variantCollection.Any(x => x.SequenceEqual(lp.CLoneAndAdd(Arr[lastPoint.X, lastPoint.Y - 1]))))
-                    {
-                        lp.Add(Arr[lastPoint.X, lastPoint.Y - 1]);
-                        FindLocFunc(lp);
-                        lp.RemoveAt(lp.Count - 1);
-                    }
-                    if (lastPoint.Y + 1 < rows && !lp.Contains(Arr[lastPoint.X, lastPoint.Y + 1]) && !variantCollection.Any(x => x.SequenceEqual(lp.CLoneAndAdd(Arr[lastPoint.X, lastPoint.Y + 1]))))
-                    {
-                        lp.Add(Arr[lastPoint.X, lastPoint.Y + 1]);
-                        FindLocFunc(lp);
-                        lp.RemoveAt(lp.Count - 1);
-                    }
-                    if (lastPoint.X + 1 < rows && lastPoint.Y - 1 >= 0 && !lp.Contains(Arr[lastPoint.X + 1, lastPoint.Y - 1]) && !variantCollection.Any(x => x.SequenceEqual(lp.CLoneAndAdd(Arr[lastPoint.X + 1, lastPoint.Y - 1]))))
-                    {
-                        lp.Add(Arr[lastPoint.X + 1, lastPoint.Y - 1]);
-                        FindLocFunc(lp);
-                        lp.RemoveAt(lp.Count - 1);
-                    }
-                    if (lastPoint.X + 1 < rows && !lp.Contains(Arr[lastPoint.X + 1, lastPoint.Y]))//&& !variantCollection.Any(x => x.SequenceEqual(lp.CLoneAndAdd(Arr[lastPoint.X + 1, lastPoint.Y]))))
-                    {
-                        lp.Add(Arr[lastPoint.X + 1, lastPoint.Y]);
-                        FindLocFunc(lp);
-                        lp.RemoveAt(lp.Count - 1);
-                    }
-                    if (lastPoint.X + 1 < rows && lastPoint.Y + 1 < cols && !lp.Contains(Arr[lastPoint.X + 1, lastPoint.Y + 1]) && !variantCollection.Any(x => x.SequenceEqual(lp.CLoneAndAdd(Arr[lastPoint.X + 1, lastPoint.Y + 1]))))
-                    {
-                        lp.Add(Arr[lastPoint.X + 1, lastPoint.Y + 1]);
-                        FindLocFunc(lp);
-                        lp.RemoveAt(lp.Count - 1);
-                    }
                 }
+                
                 
             }
 
@@ -106,8 +84,9 @@ namespace SlovoZaSlovo
 
 
 
-            answers.Add(new Answer { cost = 10, points = new List<Point>(), word = "прчк" });
-            return answers;
+
+            Answers.Add(new Answer("прчк", 10, new List<Point>()));
+            return Answers;
         }
 
 

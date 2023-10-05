@@ -60,20 +60,28 @@ namespace SlovoZaSlovo
             }
 
 
+            Graph SlovoGraph = new Graph(charArr, FormAges.CreateEdges(charArr));
+
+            foreach (var p in SlovoGraph.GetPointsList(charArr[1,1]) )
+            {
+                wordsListBox.Items.Add(p.ToString());
+            }
+
+            answerList = WordClass.Find(SlovoGraph, wordsList);
 
             //wordsListBox.Items.Add(charArr[0,0].Val == charArr[0, 1].Val);
             //List<Point> charArr2 = new List<Point>() { charArr[0, 0], charArr[0, 1], charArr[0, 2] };
             //List<Point> charArr3 = new List<Point>() { charArr[0, 0], charArr[0, 1], charArr[0, 2] };
             //wordsListBox.Items.Add(charArr2 == charArr3);
             // wordsListBox.Items.Add(charArr2.SequenceEqual(charArr3));
-            
-            
-            answerList = WordClass.Find(charArr, wordsList);
+
+
+            ////////      
 
             //wordsListBox.Items.AddRange(answerList.ToArray());
             for (int i = 0; i < answerList.Count; i++)
             {
-                wordsListBox.Items.Add(answerList.ElementAt(i).word +" - " +answerList.ElementAt(i).cost);
+                wordsListBox.Items.Add(answerList.ElementAt(i).ToString());
             }
 
 
