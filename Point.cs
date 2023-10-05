@@ -22,11 +22,11 @@ namespace SlovoZaSlovo
             this.X = x;
             this.Y = y;
             this.Val = val;
-            this.factor = factor;
+            this.Factor = factor;
         }
-        public string GetName()
+        public override string ToString()
         {
-            return $"{X}.{Y}";
+            return $"{X}.{Y} - {Val}";
         }
 
     }

@@ -8,27 +8,27 @@ namespace SlovoZaSlovo
 {
     internal class Graph
     {
-        Point[,] points = new Point[5,5] ;
-        List<Edge> edges = new();
+        public Point[,] Points = new Point[5,5] ;
+        public List<Edge> Edges = new();
         public void AddEdges(Point from, Point to)
         {
-            edges.Add(new Edge(from, to));
+            Edges.Add(new Edge(from, to));
         }
 
-        Graph(Point[,] points, List<Edge> edges)
+        public Graph(Point[,] points, List<Edge> edges)
         {
-            this.points = points ;
-            this.edges = edges ;
+            this.Points = points ;
+            this.Edges = edges ;
         }
 
 
-        public List<Vertex> GetVetexLists(Vertex vertex)
+        public List<Point> GetPointsList(Point point)
         {
-            var result = new List<Vertex>();
+            var result = new List<Point>();
 
             foreach (var edge in Edges)
             {
-                if (edge.From == vertex)
+                if (edge.From == point)
                 {
                     result.Add(edge.To);
                 }
