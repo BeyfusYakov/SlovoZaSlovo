@@ -8,8 +8,8 @@ namespace SlovoZaSlovo
 {
     internal class Graph
     {
-        public Point[,] Points = new Point[5,5] ;
-        public List<Edge> Edges = new();
+        public Point[,] Points ;
+        public List<Edge> Edges;
         public void AddEdges(Point from, Point to)
         {
             Edges.Add(new Edge(from, to));
@@ -24,11 +24,12 @@ namespace SlovoZaSlovo
 
         public List<Point> GetPointsList(Point point)
         {
+            var selectedEdges = Edges.Where(p => p.From == point); 
             var result = new List<Point>();
 
-            foreach (var edge in Edges)
+            foreach (var edge in selectedEdges)
             {
-                if (edge.From == point)
+                //if (edge.From == point)
                 {
                     result.Add(edge.To);
                 }

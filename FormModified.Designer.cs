@@ -338,7 +338,7 @@
 
         #endregion
         private System.Windows.Forms.Button startButton;
-        private System.Windows.Forms.ListBox wordsListBox;
+        public System.Windows.Forms.ListBox wordsListBox; //!!! Поменять потом обратно на private
         private System.Windows.Forms.Panel letterPanel;
         private SlovoTextBox slovoTextBox55;
         private SlovoTextBox slovoTextBox51;

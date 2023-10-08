@@ -20,10 +20,13 @@ namespace SlovoZaSlovo
 
         private async void startButton_Click(object sender, EventArgs e)
         {
-            Point[,] charArr  = new Point[5,5];
+            Point[,] charArr  = new Point[3,3];
             List<Answer> answerList = new List<Answer>();
             List<string> wordsList = new List<string>();
             string path = "russian_nouns.txt";
+            int Rows = charArr.GetLength(0);
+            int Cols = charArr.GetLength(1);
+
 
 
             #region первый вариант
@@ -43,14 +46,13 @@ namespace SlovoZaSlovo
             while (!reader.EndOfStream)
             {
                 wordsList.Add(reader.ReadLine()); //В лист работает гораздо быстрее
-                //wordsListBox.Items.Add(reader.ReadLine());
             }
             #endregion
 
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < Rows; i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < Cols; j++)
                 {
                     if (!string.IsNullOrEmpty((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text))
                     {
@@ -62,10 +64,10 @@ namespace SlovoZaSlovo
 
             Graph SlovoGraph = new Graph(charArr, FormAges.CreateEdges(charArr));
 
-            foreach (var p in SlovoGraph.GetPointsList(charArr[1,1]) )
-            {
-                wordsListBox.Items.Add(p.ToString());
-            }
+            //foreach (var p in SlovoGraph.GetPointsList(charArr[1,1]) )
+            //{
+            //    wordsListBox.Items.Add(p.ToString());
+            //}
 
             answerList = WordClass.Find(SlovoGraph, wordsList);
 
@@ -79,11 +81,11 @@ namespace SlovoZaSlovo
             ////////      
 
             //wordsListBox.Items.AddRange(answerList.ToArray());
-            for (int i = 0; i < answerList.Count; i++)
-            {
-                wordsListBox.Items.Add(answerList.ElementAt(i).ToString());
-            }
-
+            //for (int i = 0; i < answerList.Count; i++)
+            //{
+            //    wordsListBox.Items.Add(answerList.ElementAt(i).ToString());
+            //}
+            wordsListBox.DataSource = answerList;
 
         }
 
