@@ -50,6 +50,9 @@ namespace SlovoZaSlovo
             #endregion
 
 
+
+
+
             for (int i = 0; i < Rows; i++)
             {
                 for (int j = 0; j < Cols; j++)

@@ -55,6 +55,7 @@
     <Compile Include="FormAges.cs" />
     <Compile Include="Graph.cs" />
     <Compile Include="Point.cs" />
+    <Compile Include="TrieNode.cs" />
     <Compile Include="WordClass.cs" />
     <Compile Include="FormModified.cs">
       <SubType>Form</SubType>
