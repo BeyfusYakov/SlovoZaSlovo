@@ -71,6 +71,7 @@
     <Compile Include="SlovoTextBox.Designer.cs">
       <DependentUpon>SlovoTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="WordsClassTrie.cs" />
     <EmbeddedResource Include="FormModified.resx">
       <DependentUpon>FormModified.cs</DependentUpon>
       <SubType>Designer</SubType>
