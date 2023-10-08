@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SlovoZaSlovo
 {
 
-    public record Point
+    public class Point ///*record*/ работает медленнее
     {
         private int x;
         public int X { get => x; set => x = value; }
