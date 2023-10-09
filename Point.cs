@@ -9,14 +9,14 @@ namespace SlovoZaSlovo
 
     public class Point ///*record*/ работает медленнее
     {
-        private int x;
-        public int X { get => x; set => x = value; }
-        private int y;
-        public int Y { get => y; set => y = value; }
-        private char val;
-        public char Val { get => val; set => val = value; }
-        private int factor;
-        public int Factor { get => factor; set => factor = value; }
+        public readonly int X;
+        // public int X { get => x; set => x = value; }
+        public readonly int Y;
+        //  public int Y { get => y; set => y = value; }
+        public readonly char Val;
+        // public char Val { get => val; set => val = value; }
+        public readonly int Factor;
+      //  public int Factor { get => factor; set => factor = value; }
         public Point(int x, int y, char val, int factor = 0)
         {
             this.X = x;

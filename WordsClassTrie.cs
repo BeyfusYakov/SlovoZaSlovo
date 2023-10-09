@@ -8,19 +8,21 @@ namespace SlovoZaSlovo
 {
     internal static class WordsClassTrie
     {
-        public static  List<string> FindWords(char[][] board, TrieNode root)
+        public static  List<string> FindWords(Point[,] board, TrieNode root)
         {
             var ret = new HashSet<string>();
-            var rootTrie = root; 
+            var rootTrie = root;
+            int row = board.GetLength(0);
+            int col = board.GetLength(1);
 
 
-            var usageMap = new bool[board.Length, board[0].Length];
+            var usedMap = new bool[row, col];
 
-            for (int i = 0; i < board.Length; i++)
+            for (int i = 0; i < row; i++)
             {
-                for (int j = 0; j < board[i].Length; j++)
+                for (int j = 0; j < col; j++)
                 {
-                    root.FindWords(board, i, j, usageMap, ret);
+                    root.FindWordsFunc(board, i, j, usedMap, ret);
                 }
             }
 

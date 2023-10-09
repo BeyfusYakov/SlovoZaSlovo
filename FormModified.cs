@@ -28,7 +28,7 @@ namespace SlovoZaSlovo
             int Rows = charArr.GetLength(0);
             int Cols = charArr.GetLength(1);
             var root = new TrieNode();
-            char[][] board = new char[Rows][];
+            Point[,] board = new Point[5,5];
 
 
             #region первый вариант
@@ -79,14 +79,14 @@ namespace SlovoZaSlovo
 
             for (int i = 0; i < Rows; i++)
             {
-                board[i] = new char[Rows];
+                //board[i] = new char[Rows];
                 for (int j = 0; j < Cols; j++)
                 {
                     if (!string.IsNullOrEmpty((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text))
                     {
                         //charArr[i, j] = new Point(i, j, Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text), (byte)((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor));
-                        board[i][j] = Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text);
-                        //board[i][j] = 'A';
+                        //board[i,j] = Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text);
+                        board[i,j] = new Point(i, j, Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text), (byte)((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor));
                     }
                 }
             }
@@ -121,6 +121,7 @@ namespace SlovoZaSlovo
 
             //wordsListBox.DataSource = answerList;
             wordsListBox.DataSource = StringList;
+            label1.Text = StringList.Count.ToString();
 
         }
 
