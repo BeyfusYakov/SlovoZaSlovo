@@ -22,7 +22,7 @@ namespace SlovoZaSlovo
         {
             Point[,] charArr  = new Point[5,5];
             List<Answer> answerList = new List<Answer>();
-            List<string> wordsList = new List<string>();
+            HashSet<Answer> answersList = new HashSet<Answer>();
             List<string> StringList = new List<string>();
             string path = "russian_nouns.txt";
             int Rows = charArr.GetLength(0);
@@ -91,7 +91,7 @@ namespace SlovoZaSlovo
                 }
             }
 
-            StringList = WordsClassTrie.FindWords(board, root);
+            answersList = WordsClassTrie.FindWords(board, root);
 
 
             //Graph SlovoGraph = new Graph(charArr, FormAges.CreateEdges(charArr));
@@ -120,7 +120,8 @@ namespace SlovoZaSlovo
             //}
 
             //wordsListBox.DataSource = answerList;
-            wordsListBox.DataSource = StringList;
+            answerList.Sort();
+            wordsListBox.DataSource = answersList.ToList();
             label1.Text = StringList.Count.ToString();
 
         }
@@ -129,7 +130,7 @@ namespace SlovoZaSlovo
         {
 
             (letterPanel.Controls[$"slovoTextBox{1}{1}"] as SlovoTextBox).Text = "А";
-            (letterPanel.Controls[$"slovoTextBox{1}{2}"] as SlovoTextBox).Text = "А";
+            (letterPanel.Controls[$"slovoTextBox{1}{2}"] as SlovoTextBox).Text = "Р";
             (letterPanel.Controls[$"slovoTextBox{1}{3}"] as SlovoTextBox).Text = "Б";
             (letterPanel.Controls[$"slovoTextBox{1}{4}"] as SlovoTextBox).Text = "У";
             (letterPanel.Controls[$"slovoTextBox{1}{5}"] as SlovoTextBox).Text = "З";
@@ -154,9 +155,9 @@ namespace SlovoZaSlovo
 
             (letterPanel.Controls[$"slovoTextBox{5}{1}"] as SlovoTextBox).Text = "Б";
             (letterPanel.Controls[$"slovoTextBox{5}{2}"] as SlovoTextBox).Text = "О";
-            (letterPanel.Controls[$"slovoTextBox{5}{3}"] as SlovoTextBox).Text = "Т";
-            (letterPanel.Controls[$"slovoTextBox{5}{4}"] as SlovoTextBox).Text = "Н";
-            (letterPanel.Controls[$"slovoTextBox{5}{5}"] as SlovoTextBox).Text = "А";
+            (letterPanel.Controls[$"slovoTextBox{5}{3}"] as SlovoTextBox).Text = "Н";
+            (letterPanel.Controls[$"slovoTextBox{5}{4}"] as SlovoTextBox).Text = "А";
+            (letterPanel.Controls[$"slovoTextBox{5}{5}"] as SlovoTextBox).Text = "С";
 
         }
     }

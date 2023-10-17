@@ -26,7 +26,7 @@ namespace SlovoZaSlovo
         }
         public override string ToString()
         {
-            return $"{X}.{Y} - {Val}";
+            return $"{X}.{Y}({Val})";
         }
 
     }

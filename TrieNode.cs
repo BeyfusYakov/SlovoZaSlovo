@@ -24,10 +24,25 @@ namespace SlovoZaSlovo
             nodes[cind].Add(str, ind + 1);
         }
 
-        public void FindWordsFunc(Point[,] board, int i, int j, bool[,] usage, HashSet<string> ret)
+        public void FindWordsFunc(Point[,] board, int i, int j, bool[,] usage, HashSet<Answer> ret)
         {
-            if (word != null) ret.Add(word);
+            if (word != null)
+            {
+                    var tempLst = new List<Point>();
+                    for (int k = 0; k < board.GetLength(0); k++)
+                    {
+                        for (int l = 0; l < board.GetLength(1); l++)
+                        {
+                            if (usage[k, l])
+                                tempLst.Add(board[k, l]);
+                        }
+                    }
+                //if (!ret.Contains(new Answer(word, 0, tempLst)))
+                {
+                    ret.Add(new Answer(word, 0, tempLst));
+                }
 
+            }
             if (i < 0 || i >= board.GetLength(0)) return;
             if (j < 0 || j >= board.GetLength(1)) return;
 

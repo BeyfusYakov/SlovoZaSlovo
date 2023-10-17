@@ -8,9 +8,9 @@ namespace SlovoZaSlovo
 {
     internal static class WordsClassTrie
     {
-        public static  List<string> FindWords(Point[,] board, TrieNode root)
+        public static  HashSet<Answer> FindWords(Point[,] board, TrieNode root)
         {
-            var ret = new HashSet<string>();
+            var ret = new HashSet<Answer>();
             var rootTrie = root;
             int row = board.GetLength(0);
             int col = board.GetLength(1);
@@ -26,7 +26,7 @@ namespace SlovoZaSlovo
                 }
             }
 
-           return ret.ToList();
+           return ret;
            
         }
     }
