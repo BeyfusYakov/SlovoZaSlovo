@@ -23,16 +23,12 @@ namespace SlovoZaSlovo
 
         public override bool Equals(object obj)
         {
-            return this.Equals(obj as Answer);
-        }
-
-        private bool Equals(Answer that)
-        {
-            if (that == null)
+            var other = obj as Answer;
+            if (other == null)
             {
                 return false;
             }
-            return object.Equals(this.Word, that.Word) && this.Cost == that.Cost;
+            return object.Equals(this.Word, other.Word) && this.Cost == other.Cost;
         }
 
         public Answer(string word, int cost, List<Point> points)

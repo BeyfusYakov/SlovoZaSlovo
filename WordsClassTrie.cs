@@ -11,7 +11,7 @@ namespace SlovoZaSlovo
         public static  HashSet<Answer> FindWords(Point[,] board, TrieNode root)
         {
             var ret = new HashSet<Answer>();
-            var rootTrie = root;
+            //var rootTrie = root;
             int row = board.GetLength(0);
             int col = board.GetLength(1);
 

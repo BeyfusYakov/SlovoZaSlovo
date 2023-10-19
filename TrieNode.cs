@@ -37,9 +37,9 @@ namespace SlovoZaSlovo
                                 tempLst.Add(board[k, l]);
                         }
                     }
-                //if (!ret.Contains(new Answer(word, 0, tempLst)))
                 {
                     ret.Add(new Answer(word, 0, tempLst));
+                    
                 }
 
             }
