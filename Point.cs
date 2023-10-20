@@ -14,19 +14,21 @@ namespace SlovoZaSlovo
         private int y;
         public int Y { get => y; set => y = value; }
         private char val;
-        public char Val { get => val; set => val = value; }
+        public char Value { get => val; set => val = value; }
         private int factor;
         public int Factor { get => factor; set => factor = value; }
+
+        public bool Visited;
         public Point(int x, int y, char val, int factor = 0)
         {
             this.X = x;
             this.Y = y;
-            this.Val = val;
+            this.Value = val;
             this.Factor = factor;
         }
         public override string ToString()
         {
-            return $"{X}.{Y} - {Val}";
+            return $"{X}.{Y} - {Value}";
         }
 
     }

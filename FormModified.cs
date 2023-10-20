@@ -20,8 +20,9 @@ namespace SlovoZaSlovo
 
         private async void startButton_Click(object sender, EventArgs e)
         {
-            Point[,] charArr  = new Point[3,3];
-            List<Answer> answerList = new List<Answer>();
+            Point[,] charArr  = new Point[4,4];
+            //List<Answer> answerList = new List<Answer>();
+            HashSet<string> answerList = new HashSet<string>();
             List<string> wordsList = new List<string>();
             string path = "russian_nouns.txt";
             int Rows = charArr.GetLength(0);
@@ -69,7 +70,7 @@ namespace SlovoZaSlovo
             //    wordsListBox.Items.Add(p.ToString());
             //}
 
-            answerList = WordClass.Find(SlovoGraph, wordsList);
+            answerList = WordClass.Find(SlovoGraph, wordsList.ToArray());
 
             //wordsListBox.Items.Add(charArr[0,0].Val == charArr[0, 1].Val);
             //List<Point> charArr2 = new List<Point>() { charArr[0, 0], charArr[0, 1], charArr[0, 2] };
@@ -85,7 +86,7 @@ namespace SlovoZaSlovo
             //{
             //    wordsListBox.Items.Add(answerList.ElementAt(i).ToString());
             //}
-            wordsListBox.DataSource = answerList;
+            wordsListBox.DataSource = answerList.ToList();
 
         }
 
