@@ -14,7 +14,7 @@ namespace SlovoZaSlovo
         public List<Point> Points = new List<Point>();
         public override string ToString()
         {
-            return $"{Word} - [{string.Join(", ", Points)}]";
+            return $"{Word} - {Cost} - [{string.Join(", ", Points)}]";
         }
         public override int GetHashCode()
         {

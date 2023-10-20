@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Microsoft.VisualBasic;
+using System.Collections.ObjectModel;
 
 namespace SlovoZaSlovo
 {
@@ -23,7 +25,7 @@ namespace SlovoZaSlovo
             Point[,] charArr  = new Point[5,5];
             List<Answer> answerList = new List<Answer>();
             HashSet<Answer> answersList = new HashSet<Answer>();
-            List<string> StringList = new List<string>();
+            //List<string> StringList = new List<string>();
             string path = "russian_nouns.txt";
             int Rows = charArr.GetLength(0);
             int Cols = charArr.GetLength(1);
@@ -54,7 +56,8 @@ namespace SlovoZaSlovo
             #endregion
 
 
-            //удаление ненужных слов из словаря
+            #region удаление ненужных слов из словаря
+
             //StreamWriter f = new StreamWriter("test.txt");
             //foreach (string word in wordsList)
             //{
@@ -64,18 +67,8 @@ namespace SlovoZaSlovo
             //    }
             //}
             //f.Close();
-
-
-            //for (int i = 0; i < Rows; i++)
-            //{
-            //    for (int j = 0; j < Cols; j++)
-            //    {
-            //        if (!string.IsNullOrEmpty((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text))
-            //        {
-            //            charArr[i, j] = new Point(i,j,Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text), (byte)((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor));
-            //        }
-            //    }
             //}
+            #endregion
 
             for (int i = 0; i < Rows; i++)
             {
@@ -93,38 +86,15 @@ namespace SlovoZaSlovo
 
             answersList = WordsClassTrie.FindWords(board, root);
 
-
-            //Graph SlovoGraph = new Graph(charArr, FormAges.CreateEdges(charArr));
-            //answerList = WordClass.Find(SlovoGraph, wordsList);
-
-            //foreach (var p in SlovoGraph.GetPointsList(charArr[1,1]) )
-            //{
-            //    wordsListBox.Items.Add(p.ToString());
-            //}
-
-
-
-            //wordsListBox.Items.Add(charArr[0,0].Val == charArr[0, 1].Val);
-            //List<Point> charArr2 = new List<Point>() { charArr[0, 0], charArr[0, 1], charArr[0, 2] };
-            //List<Point> charArr3 = new List<Point>() { charArr[0, 0], charArr[0, 1], charArr[0, 2] };
-            //wordsListBox.Items.Add(charArr2 == charArr3);
-            // wordsListBox.Items.Add(charArr2.SequenceEqual(charArr3));
-
-
-            ////////      
-
-            //wordsListBox.Items.AddRange(answerList.ToArray());
-            //for (int i = 0; i < answerList.Count; i++)
-            //{
-            //    wordsListBox.Items.Add(answerList.ElementAt(i).ToString());
-            //}
-
-            //wordsListBox.DataSource = answerList;
-            answerList.Sort();
-            wordsListBox.DataSource = answersList.ToList();
-            label1.Text = StringList.Count.ToString();
+            //answerList.Sort();
+            wordsListBox.DataSource =  answersList.ToList();
+            label1.Text = answersList.Count.ToString();
 
         }
+
+
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {

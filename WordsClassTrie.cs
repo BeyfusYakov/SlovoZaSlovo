@@ -8,6 +8,7 @@ namespace SlovoZaSlovo
 {
     internal static class WordsClassTrie
     {
+        private static List<Point> ListOfPoints = new List<Point>();
         public static  HashSet<Answer> FindWords(Point[,] board, TrieNode root)
         {
             var ret = new HashSet<Answer>();
@@ -22,7 +23,7 @@ namespace SlovoZaSlovo
             {
                 for (int j = 0; j < col; j++)
                 {
-                    root.FindWordsFunc(board, i, j, usedMap, ret);
+                    root.FindWordsFunc(board, i, j, usedMap, ret, ListOfPoints);
                 }
             }
 
