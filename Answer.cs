@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SlovoZaSlovo
 {
-    internal class Answer
+    internal class Answer : IComparable
     {
         public string Word { get; set; }
         public int Cost { get; set; }
@@ -29,6 +29,15 @@ namespace SlovoZaSlovo
                 return false;
             }
             return object.Equals(this.Word, other.Word) && this.Cost == other.Cost;
+        }
+
+        public int CompareTo(object obj)
+        {
+            Answer that = obj as Answer;
+            if (that == null)
+                throw new Exception("Невозможно сравнить объекты");
+
+            return Cost.CompareTo(that.Cost);
         }
 
         public Answer(string word, int cost, List<Point> points)

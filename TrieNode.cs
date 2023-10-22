@@ -42,7 +42,7 @@ namespace SlovoZaSlovo
                             tmpCost += k;
                             break;
                         case 3: 
-                            tmpCost = k*2;
+                            tmpCost += k*2;
                             break;
                         case 4:
                             tmpCost += k*3;

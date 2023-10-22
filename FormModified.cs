@@ -24,7 +24,7 @@ namespace SlovoZaSlovo
         {
             Point[,] charArr  = new Point[5,5];
             List<Answer> answerList = new List<Answer>();
-            HashSet<Answer> answersList = new HashSet<Answer>();
+            HashSet<Answer> answersHashSet = new HashSet<Answer>();
             //List<string> StringList = new List<string>();
             string path = "russian_nouns.txt";
             int Rows = charArr.GetLength(0);
@@ -84,11 +84,10 @@ namespace SlovoZaSlovo
                 }
             }
 
-            answersList = WordsClassTrie.FindWords(board, root);
-
-            //answerList.Sort();
-            wordsListBox.DataSource =  answersList.ToList();
-            label1.Text = answersList.Count.ToString();
+            //answersHashSet = WordsClassTrie.FindWords(board, root);
+            answerList = WordsClassTrie.FindWords(board, root).OrderByDescending(x => x.Cost).ToList();
+            wordsListBox.DataSource = answerList;
+            label1.Text = answerList.Count.ToString();
 
         }
 
