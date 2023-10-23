@@ -1,4 +1,7 @@
-﻿namespace SlovoZaSlovo
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace SlovoZaSlovo
 {
     partial class SlovoTextBox
     {
@@ -28,68 +31,68 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.UCPanel = new System.Windows.Forms.Panel();
-            this.UClabel = new System.Windows.Forms.Label();
-            this.UCtextBox = new System.Windows.Forms.TextBox();
-            this.UCPanel.SuspendLayout();
-            this.SuspendLayout();
+            UCPanel = new Panel();
+            UClabel = new Label();
+            UCtextBox = new TextBox();
+            UCPanel.SuspendLayout();
+            SuspendLayout();
             // 
             // UCPanel
             // 
-            this.UCPanel.BackColor = System.Drawing.SystemColors.Window;
-            this.UCPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UCPanel.Controls.Add(this.UClabel);
-            this.UCPanel.Controls.Add(this.UCtextBox);
-            this.UCPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UCPanel.Location = new System.Drawing.Point(0, 0);
-            this.UCPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.UCPanel.Name = "UCPanel";
-            this.UCPanel.Size = new System.Drawing.Size(60, 60);
-            this.UCPanel.TabIndex = 2;
+            UCPanel.BackColor = SystemColors.Window;
+            UCPanel.BorderStyle = BorderStyle.FixedSingle;
+            UCPanel.Controls.Add(UClabel);
+            UCPanel.Controls.Add(UCtextBox);
+            UCPanel.Dock = DockStyle.Fill;
+            UCPanel.Location = new System.Drawing.Point(0, 0);
+            UCPanel.Margin = new Padding(0);
+            UCPanel.Name = "UCPanel";
+            UCPanel.Size = new Size(80, 92);
+            UCPanel.TabIndex = 2;
+            UCPanel.Click += UC_Click;
             // 
             // UClabel
             // 
-            this.UClabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.UClabel.AutoSize = true;
-            this.UClabel.BackColor = System.Drawing.SystemColors.Window;
-            this.UClabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.UClabel.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.UClabel.Location = new System.Drawing.Point(0, 43);
-            this.UClabel.Margin = new System.Windows.Forms.Padding(0);
-            this.UClabel.Name = "UClabel";
-            this.UClabel.Size = new System.Drawing.Size(22, 13);
-            this.UClabel.TabIndex = 1;
-            this.UClabel.Text = "C0";
-            this.UClabel.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.UClabel.Click += new System.EventHandler(this.UClabel_Click);
+            UClabel.Anchor = AnchorStyles.Left;
+            UClabel.AutoSize = true;
+            UClabel.BackColor = SystemColors.Window;
+            UClabel.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Bold, GraphicsUnit.Point);
+            UClabel.ForeColor = Color.CornflowerBlue;
+            UClabel.Location = new System.Drawing.Point(1, 67);
+            UClabel.Margin = new Padding(0);
+            UClabel.Name = "UClabel";
+            UClabel.Size = new Size(27, 17);
+            UClabel.TabIndex = 1;
+            UClabel.Text = "C0";
+            UClabel.TextAlign = ContentAlignment.BottomLeft;
+            UClabel.Click += UC_Click;
             // 
             // UCtextBox
             // 
-            this.UCtextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.UCtextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.UCtextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.UCtextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.UCtextBox.Location = new System.Drawing.Point(0, 6);
-            this.UCtextBox.Margin = new System.Windows.Forms.Padding(0);
-            this.UCtextBox.MaxLength = 1;
-            this.UCtextBox.Name = "UCtextBox";
-            this.UCtextBox.Size = new System.Drawing.Size(59, 43);
-            this.UCtextBox.TabIndex = 0;
-            this.UCtextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.UCtextBox.Click += new System.EventHandler(this.UCtextBox_Click);
+            UCtextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            UCtextBox.BorderStyle = BorderStyle.None;
+            UCtextBox.CharacterCasing = CharacterCasing.Upper;
+            UCtextBox.Font = new Font("Microsoft Sans Serif", 28F, FontStyle.Regular, GraphicsUnit.Point);
+            UCtextBox.Location = new System.Drawing.Point(1, 9);
+            UCtextBox.Margin = new Padding(0);
+            UCtextBox.MaxLength = 1;
+            UCtextBox.Name = "UCtextBox";
+            UCtextBox.Size = new Size(74, 53);
+            UCtextBox.TabIndex = 0;
+            UCtextBox.TextAlign = HorizontalAlignment.Center;
+            UCtextBox.Click += UC_Click;
             // 
             // SlovoTextBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.UCPanel);
-            this.Name = "SlovoTextBox";
-            this.Size = new System.Drawing.Size(60, 60);
-            this.UCPanel.ResumeLayout(false);
-            this.UCPanel.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(UCPanel);
+            Margin = new Padding(4, 5, 4, 5);
+            Name = "SlovoTextBox";
+            Size = new Size(80, 92);
+            UCPanel.ResumeLayout(false);
+            UCPanel.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -97,5 +100,6 @@
         private System.Windows.Forms.TextBox UCtextBox;
         private System.Windows.Forms.Label UClabel;
         private System.Windows.Forms.Panel UCPanel;
+
     }
 }

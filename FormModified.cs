@@ -22,7 +22,7 @@ namespace SlovoZaSlovo
 
         private async void startButton_Click(object sender, EventArgs e)
         {
-            Point[,] charArr  = new Point[5,5];
+            Point[,] charArr = new Point[5, 5];
             List<Answer> answerList = new List<Answer>();
             HashSet<Answer> answersHashSet = new HashSet<Answer>();
             //List<string> StringList = new List<string>();
@@ -30,7 +30,7 @@ namespace SlovoZaSlovo
             int Rows = charArr.GetLength(0);
             int Cols = charArr.GetLength(1);
             var root = new TrieNode();
-            Point[,] board = new Point[5,5];
+            Point[,] board = new Point[5, 5];
 
 
             #region первый вариант
@@ -79,7 +79,7 @@ namespace SlovoZaSlovo
                     {
                         //charArr[i, j] = new Point(i, j, Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text), (byte)((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor));
                         //board[i,j] = Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text);
-                        board[i,j] = new Point(i, j, Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text), (byte)((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor));
+                        board[i, j] = new Point(i, j, Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text), (byte)((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor));
                     }
                 }
             }
@@ -93,11 +93,8 @@ namespace SlovoZaSlovo
 
 
 
-
-
         private void button1_Click(object sender, EventArgs e)
         {
-
             (letterPanel.Controls[$"slovoTextBox{1}{1}"] as SlovoTextBox).Text = "А";
             (letterPanel.Controls[$"slovoTextBox{1}{2}"] as SlovoTextBox).Text = "Р";
             (letterPanel.Controls[$"slovoTextBox{1}{3}"] as SlovoTextBox).Text = "Б";

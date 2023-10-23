@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SlovoZaSlovo
 {
@@ -22,11 +23,11 @@ namespace SlovoZaSlovo
         }
         private FactorValue factor;
 
-        public FactorValue Factor 
-        { 
+        public FactorValue Factor
+        {
             get => factor;
-            set 
-            { 
+            set
+            {
                 factor = value;
 
                 switch (value)
@@ -53,27 +54,37 @@ namespace SlovoZaSlovo
                     default:
                         break;
                 }
-            } 
+            }
         }
 
         override public string Text { get => UCtextBox.Text; set => UCtextBox.Text = value; }
-
 
 
         public SlovoTextBox()
         {
             InitializeComponent();
             if (factor != FactorValue.None)
-            this.UClabel.Text = factor.ToString();
+                this.UClabel.Text = factor.ToString();
             else
             {
                 this.UClabel.Text = "";
             }
 
             this.UCtextBox.Text = "";
+
+            this.UCPanel.Paint += new PaintEventHandler(UCPaint);
+            this.UCtextBox.Paint += new PaintEventHandler(UCPaint);
+
+            void UCPaint(object sender, PaintEventArgs e)
+            {
+                //if (sender is Panel)
+                 var s = sender as Panel; 
+                Rectangle rectangle = new Rectangle(s.Location.X , s.Location.Y, s.Width - 2, UCPanel.Height - 2);
+                ControlPaint.DrawBorder(e.Graphics, /*this.ClientRectangle*/ rectangle, Color.IndianRed, ButtonBorderStyle.Solid);
+            }
         }
 
-        private void UCtextBox_Click(object sender, EventArgs e)
+        private void UC_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Click");
             switch (Factor)
@@ -94,28 +105,6 @@ namespace SlovoZaSlovo
                     Factor = FactorValue.None;
                     break;
             }
-        }
-
-        private void UClabel_Click(object sender, EventArgs e)
-        {
-            //switch (Factor)
-            //{
-            //    case FactorValue.None:
-            //        Factor = FactorValue.C2;
-            //        break;
-            //    case FactorValue.C2:
-            //        Factor = FactorValue.C3;
-            //        break;
-            //    case FactorValue.C3:
-            //        Factor = FactorValue.x2;
-            //        break;
-            //    case FactorValue.x2:
-            //        Factor = FactorValue.x3;
-            //        break;
-            //    case FactorValue.x3:
-            //        Factor = FactorValue.None;
-            //        break;
-            //}
         }
     }
 }
