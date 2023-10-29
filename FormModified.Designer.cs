@@ -84,13 +84,9 @@ namespace SlovoZaSlovo
             wordsListBox.Name = "wordsListBox";
             wordsListBox.Size = new System.Drawing.Size(571, 584);
             wordsListBox.TabIndex = 47;
-            wordsListBox.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+            wordsListBox.SelectedIndexChanged += wordsListBox_SelectedIndexChanged;
 
-            void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-            {
-                string selectedCountry = wordsListBox.SelectedItem.ToString();
-                MessageBox.Show(selectedCountry);
-            }
+
             // 
             // letterPanel
             // 

@@ -15,15 +15,50 @@ namespace SlovoZaSlovo
 {
     public partial class FormModified : Form
     {
+        List<Answer> answerList = new List<Answer>();
+
         public FormModified()
         {
             InitializeComponent();
         }
 
+        void wordsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //string selectedItem = wordsListBox.SelectedItem.ToString();
+            int indexOfAnswer = wordsListBox.SelectedIndex;
+            //MessageBox.Show(answerList[indexOfAnswer].Word);
+
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    {
+                      (letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Highlight = false;
+                    }
+                }
+            }
+
+
+            foreach (var p in answerList[indexOfAnswer].Points)
+            {
+                (letterPanel.Controls[$"slovoTextBox{p.X + 1}{p.Y + 1}"] as SlovoTextBox).Highlight = true;
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    {
+                        (letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Refresh();
+                    }
+                }
+            }
+
+        }
+
         private async void startButton_Click(object sender, EventArgs e)
         {
             Point[,] charArr = new Point[5, 5];
-            List<Answer> answerList = new List<Answer>();
             HashSet<Answer> answersHashSet = new HashSet<Answer>();
             //List<string> StringList = new List<string>();
             string path = "russian_nouns.txt";
@@ -124,7 +159,8 @@ namespace SlovoZaSlovo
             (letterPanel.Controls[$"slovoTextBox{5}{3}"] as SlovoTextBox).Text = "Н";
             (letterPanel.Controls[$"slovoTextBox{5}{4}"] as SlovoTextBox).Text = "А";
             (letterPanel.Controls[$"slovoTextBox{5}{5}"] as SlovoTextBox).Text = "С";
-
+            (letterPanel.Controls[$"slovoTextBox{5}{5}"] as SlovoTextBox).Highlight = true;
+            (letterPanel.Controls[$"slovoTextBox{5}{5}"] as SlovoTextBox).Refresh();    
         }
     }
 }

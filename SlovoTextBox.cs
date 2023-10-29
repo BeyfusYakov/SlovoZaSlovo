@@ -22,6 +22,7 @@ namespace SlovoZaSlovo
             x3
         }
         private FactorValue factor;
+        public bool Highlight; 
 
         public FactorValue Factor
         {
@@ -73,14 +74,18 @@ namespace SlovoZaSlovo
             this.UCtextBox.Text = "";
 
             this.UCPanel.Paint += new PaintEventHandler(UCPaint);
-            this.UCtextBox.Paint += new PaintEventHandler(UCPaint);
+            //this.UCtextBox.Paint += new PaintEventHandler(UCPaint);
+            //this.UClabel.Paint += new PaintEventHandler(UCPaint);
 
             void UCPaint(object sender, PaintEventArgs e)
             {
                 //if (sender is Panel)
-                 var s = sender as Panel; 
-                Rectangle rectangle = new Rectangle(s.Location.X , s.Location.Y, s.Width - 2, UCPanel.Height - 2);
-                ControlPaint.DrawBorder(e.Graphics, /*this.ClientRectangle*/ rectangle, Color.IndianRed, ButtonBorderStyle.Solid);
+                if (Highlight)
+                {
+                    var s = sender as Panel;
+                    Rectangle rectangle = new Rectangle(s.Location.X, s.Location.Y, s.Width - 2, UCPanel.Height - 2);
+                    ControlPaint.DrawBorder(e.Graphics, /*this.ClientRectangle*/ rectangle, Color.Tomato, ButtonBorderStyle.Solid);
+                }
             }
         }
 
