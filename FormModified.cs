@@ -33,7 +33,7 @@ namespace SlovoZaSlovo
                 for (int j = 0; j < 5; j++)
                 {
                     {
-                      (letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Highlight = false;
+                        (letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Highlight = false;
                     }
                 }
             }
@@ -159,8 +159,6 @@ namespace SlovoZaSlovo
             (letterPanel.Controls[$"slovoTextBox{5}{3}"] as SlovoTextBox).Text = "Н";
             (letterPanel.Controls[$"slovoTextBox{5}{4}"] as SlovoTextBox).Text = "А";
             (letterPanel.Controls[$"slovoTextBox{5}{5}"] as SlovoTextBox).Text = "С";
-            (letterPanel.Controls[$"slovoTextBox{5}{5}"] as SlovoTextBox).Highlight = true;
-            (letterPanel.Controls[$"slovoTextBox{5}{5}"] as SlovoTextBox).Refresh();    
         }
     }
 }

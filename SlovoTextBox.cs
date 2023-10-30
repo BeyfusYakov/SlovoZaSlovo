@@ -22,7 +22,8 @@ namespace SlovoZaSlovo
             x3
         }
         private FactorValue factor;
-        public bool Highlight; 
+        public bool Highlight;
+        public static FactorValue CurentFactorValue = FactorValue.None;
 
         public FactorValue Factor
         {
@@ -92,22 +93,28 @@ namespace SlovoZaSlovo
         private void UC_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Click");
-            switch (Factor)
+            //switch (Factor)
+            switch (CurentFactorValue)
             {
                 case FactorValue.None:
                     Factor = FactorValue.C2;
+                    CurentFactorValue = FactorValue.C2;
                     break;
                 case FactorValue.C2:
                     Factor = FactorValue.C3;
+                    CurentFactorValue = FactorValue.C3;
                     break;
                 case FactorValue.C3:
                     Factor = FactorValue.x2;
+                    CurentFactorValue = FactorValue.x2;
                     break;
                 case FactorValue.x2:
                     Factor = FactorValue.x3;
+                    CurentFactorValue = FactorValue.x3;
                     break;
                 case FactorValue.x3:
                     Factor = FactorValue.None;
+                    CurentFactorValue = FactorValue.None;
                     break;
             }
         }

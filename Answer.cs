@@ -34,9 +34,6 @@ namespace SlovoZaSlovo
         public int CompareTo(object obj)
         {
             Answer that = obj as Answer;
-            if (that == null)
-                throw new Exception("Невозможно сравнить объекты");
-
             return Cost.CompareTo(that.Cost);
         }
 

@@ -71,18 +71,18 @@ namespace SlovoZaSlovo
             var node = nodes[ind];
             if (node != null)
             {
-                node.FindWordsFunc(board, i + 1, j, usedBoard, ret, ListOfPoints);
-                node.FindWordsFunc(board, i - 1, j, usedBoard, ret, ListOfPoints);
-                node.FindWordsFunc(board, i, j + 1, usedBoard, ret, ListOfPoints);
-                node.FindWordsFunc(board, i, j - 1, usedBoard, ret, ListOfPoints);
-                node.FindWordsFunc(board, i + 1, j + 1, usedBoard, ret, ListOfPoints);
                 node.FindWordsFunc(board, i - 1, j - 1, usedBoard, ret, ListOfPoints);
+                node.FindWordsFunc(board, i - 1, j, usedBoard, ret, ListOfPoints);
+                node.FindWordsFunc(board, i - 1, j + 1, usedBoard, ret, ListOfPoints);
+                node.FindWordsFunc(board, i, j + 1, usedBoard, ret, ListOfPoints);
+                node.FindWordsFunc(board, i + 1, j + 1, usedBoard, ret, ListOfPoints);
+                node.FindWordsFunc(board, i + 1, j, usedBoard, ret, ListOfPoints);
                 node.FindWordsFunc(board, i + 1, j - 1, usedBoard, ret, ListOfPoints);
-                node.FindWordsFunc(board, i - j, j + 1, usedBoard, ret, ListOfPoints);
+                node.FindWordsFunc(board, i, j - 1, usedBoard, ret, ListOfPoints);
             }
-
             usedBoard[i, j] = false;
-            ListOfPoints.RemoveAt(ListOfPoints.Count()-1);
+            ListOfPoints.RemoveAt(ListOfPoints.Count-1); // переделать в RemoveAt(^1);
+
         }
     }
 }
