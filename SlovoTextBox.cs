@@ -13,6 +13,8 @@ namespace SlovoZaSlovo
 {
     public partial class SlovoTextBox : UserControl
     {
+        //[System.ComponentModel.Bindable(true)]
+        //public bool IsTabStop { get; set; } = true;
         public enum FactorValue
         {
             None = 0,
@@ -37,21 +39,21 @@ namespace SlovoZaSlovo
                     case FactorValue.None:
                         this.UClabel.Text = string.Empty;
                         break;
-                    case FactorValue.C2:
-                        this.UClabel.ForeColor = Color.Blue;
-                        this.UClabel.Text = FactorValue.C2.ToString();
-                        break;
                     case FactorValue.C3:
                         this.UClabel.ForeColor = Color.Blue;
                         this.UClabel.Text = FactorValue.C3.ToString();
                         break;
+                    case FactorValue.C2:
+                        this.UClabel.ForeColor = Color.Red;
+                        this.UClabel.Text = FactorValue.C2.ToString();
+                        break;
+                    case FactorValue.x3:
+                        this.UClabel.ForeColor = Color.Blue;
+                        this.UClabel.Text = FactorValue.x3.ToString();
+                        break;
                     case FactorValue.x2:
                         this.UClabel.ForeColor = Color.Red;
                         this.UClabel.Text = FactorValue.x2.ToString();
-                        break;
-                    case FactorValue.x3:
-                        this.UClabel.ForeColor = Color.Red;
-                        this.UClabel.Text = FactorValue.x3.ToString();
                         break;
                     default:
                         break;
@@ -97,25 +99,39 @@ namespace SlovoZaSlovo
             switch (CurentFactorValue)
             {
                 case FactorValue.None:
-                    Factor = FactorValue.C2;
-                    CurentFactorValue = FactorValue.C2;
-                    break;
-                case FactorValue.C2:
                     Factor = FactorValue.C3;
                     CurentFactorValue = FactorValue.C3;
                     break;
                 case FactorValue.C3:
-                    Factor = FactorValue.x2;
-                    CurentFactorValue = FactorValue.x2;
+                    Factor = FactorValue.C2;
+                    CurentFactorValue = FactorValue.C2;
                     break;
-                case FactorValue.x2:
+                case FactorValue.C2:
                     Factor = FactorValue.x3;
                     CurentFactorValue = FactorValue.x3;
                     break;
                 case FactorValue.x3:
+                    Factor = FactorValue.x2;
+                    CurentFactorValue = FactorValue.x2;
+                    break;
+                case FactorValue.x2:
                     Factor = FactorValue.None;
                     CurentFactorValue = FactorValue.None;
                     break;
+            }
+        }
+
+        private void UC_KeyPress(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData != Keys.Tab && e.KeyData != Keys.ControlKey && e.KeyData != Keys.Alt && e.KeyData != Keys.ShiftKey)
+            {
+
+                //this.SelectNextControl(((Control)sender).Parent.Parent.Parent, true, false, false, false);
+                //this.SelectNextControl(((Control)sender).Parent.Parent, true, true, true, true);
+                //this.SelectNextControl((Control)sender, true, true, true, false);
+                //this.SelectNextControl((Control)sender, true, true, false, false);
+                SendKeys.Send("{TAB}");
+                //MessageBox.Show("as");
             }
         }
     }

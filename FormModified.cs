@@ -22,7 +22,7 @@ namespace SlovoZaSlovo
             InitializeComponent();
         }
 
-        void wordsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        void WordsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //string selectedItem = wordsListBox.SelectedItem.ToString();
             int indexOfAnswer = wordsListBox.SelectedIndex;
@@ -56,12 +56,15 @@ namespace SlovoZaSlovo
 
         }
 
-        private async void startButton_Click(object sender, EventArgs e)
+        private async void StartButton_Click(object sender, EventArgs e)
         {
             Point[,] charArr = new Point[5, 5];
             HashSet<Answer> answersHashSet = new HashSet<Answer>();
             //List<string> StringList = new List<string>();
-            string path = "russian_nouns.txt";
+            string path_nouns = "russian_nouns.txt";
+            string path_verbs = "russian_verbs.txt";
+            string path_adject = "russian_adject.txt";
+            string[] paths = new string[3] { "russian_nouns.txt", "russian_verbs.txt", "russian_adject.txt" };
             int Rows = charArr.GetLength(0);
             int Cols = charArr.GetLength(1);
             var root = new TrieNode();
@@ -82,10 +85,20 @@ namespace SlovoZaSlovo
 
 
             #region второй вариант 
-            var myList = File.ReadAllLines(path);
-            foreach (var item in myList)
+            string appPath = Application.StartupPath;
+
+
+            //var files = Directory.EnumerateFiles(appPath, "russian*.txt");
+            //var filesContent = files.Select(filePath => File.ReadAllLines(filePath));
+
+
+            foreach (string path in paths)
             {
-                root.Add(item, 0);
+                var myList = File.ReadAllLines(path);
+                foreach (var item in myList)
+                {
+                    root.Add(item, 0);
+                }
             }
 
             #endregion
@@ -93,16 +106,16 @@ namespace SlovoZaSlovo
 
             #region удаление ненужных слов из словаря
 
-            //StreamWriter f = new StreamWriter("test.txt");
-            //foreach (string word in wordsList)
+            //StreamWriter f = new StreamWriter(path_adject + "out-.txt");
+            //foreach (string word in myList)
             //{
-            //    if (!word.Contains ("-"))
+            //    if (!word.Contains("-"))
             //    {
             //        f.WriteLine(word);
             //    }
             //}
             //f.Close();
-            //}
+
             #endregion
 
             for (int i = 0; i < Rows; i++)
@@ -123,6 +136,7 @@ namespace SlovoZaSlovo
             answerList = WordsClassTrie.FindWords(board, root).OrderByDescending(x => x.Cost).ToList();
             wordsListBox.DataSource = answerList;
             label1.Text = answerList.Count.ToString();
+            wordsListBox.Focus();
 
         }
 
@@ -138,9 +152,9 @@ namespace SlovoZaSlovo
 
             (letterPanel.Controls[$"slovoTextBox{2}{1}"] as SlovoTextBox).Text = "З";
             (letterPanel.Controls[$"slovoTextBox{2}{2}"] as SlovoTextBox).Text = "И";
-            (letterPanel.Controls[$"slovoTextBox{2}{3}"] as SlovoTextBox).Text = "П";
-            (letterPanel.Controls[$"slovoTextBox{2}{4}"] as SlovoTextBox).Text = "У";
-            (letterPanel.Controls[$"slovoTextBox{2}{5}"] as SlovoTextBox).Text = "Н";
+            (letterPanel.Controls[$"slovoTextBox{2}{3}"] as SlovoTextBox).Text = "М";
+            (letterPanel.Controls[$"slovoTextBox{2}{4}"] as SlovoTextBox).Text = "Ы";
+            (letterPanel.Controls[$"slovoTextBox{2}{5}"] as SlovoTextBox).Text = "Й";
 
             (letterPanel.Controls[$"slovoTextBox{3}{1}"] as SlovoTextBox).Text = "А";
             (letterPanel.Controls[$"slovoTextBox{3}{2}"] as SlovoTextBox).Text = "К";
@@ -149,16 +163,26 @@ namespace SlovoZaSlovo
             (letterPanel.Controls[$"slovoTextBox{3}{5}"] as SlovoTextBox).Text = "А";
 
             (letterPanel.Controls[$"slovoTextBox{4}{1}"] as SlovoTextBox).Text = "К";
-            (letterPanel.Controls[$"slovoTextBox{4}{2}"] as SlovoTextBox).Text = "Р";
-            (letterPanel.Controls[$"slovoTextBox{4}{3}"] as SlovoTextBox).Text = "У";
-            (letterPanel.Controls[$"slovoTextBox{4}{4}"] as SlovoTextBox).Text = "А";
-            (letterPanel.Controls[$"slovoTextBox{4}{5}"] as SlovoTextBox).Text = "С";
+            (letterPanel.Controls[$"slovoTextBox{4}{2}"] as SlovoTextBox).Text = "У";
+            (letterPanel.Controls[$"slovoTextBox{4}{3}"] as SlovoTextBox).Text = "П";
+            (letterPanel.Controls[$"slovoTextBox{4}{4}"] as SlovoTextBox).Text = "И";
+            (letterPanel.Controls[$"slovoTextBox{4}{5}"] as SlovoTextBox).Text = "Т";
 
             (letterPanel.Controls[$"slovoTextBox{5}{1}"] as SlovoTextBox).Text = "Б";
             (letterPanel.Controls[$"slovoTextBox{5}{2}"] as SlovoTextBox).Text = "О";
             (letterPanel.Controls[$"slovoTextBox{5}{3}"] as SlovoTextBox).Text = "Н";
             (letterPanel.Controls[$"slovoTextBox{5}{4}"] as SlovoTextBox).Text = "А";
-            (letterPanel.Controls[$"slovoTextBox{5}{5}"] as SlovoTextBox).Text = "С";
+            (letterPanel.Controls[$"slovoTextBox{5}{5}"] as SlovoTextBox).Text = "Ь";
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            foreach(Control control in letterPanel.Controls)
+            {
+                control.Text = string.Empty;
+            }
+            //wordsListBox.DataSource = null; ;
+            //letterPanel.ResumeLayout();
         }
     }
 }

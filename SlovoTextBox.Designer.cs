@@ -81,6 +81,9 @@ namespace SlovoZaSlovo
             UCtextBox.TabIndex = 0;
             UCtextBox.TextAlign = HorizontalAlignment.Center;
             UCtextBox.Click += UC_Click;
+            //UCtextBox.KeyDown += UC_KeyPress;
+            //UCtextBox.KeyPress += UC_KeyPress;
+            UCtextBox.KeyUp += UC_KeyPress;
             // 
             // SlovoTextBox
             // 
@@ -93,6 +96,7 @@ namespace SlovoZaSlovo
             UCPanel.ResumeLayout(false);
             UCPanel.PerformLayout();
             ResumeLayout(false);
+            
         }
 
         #endregion

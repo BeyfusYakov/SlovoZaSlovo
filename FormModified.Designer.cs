@@ -61,19 +61,20 @@ namespace SlovoZaSlovo
             slovoTextBox12 = new SlovoTextBox();
             button1 = new Button();
             label1 = new Label();
+            ClearButton = new Button();
             letterPanel.SuspendLayout();
             SuspendLayout();
             // 
             // startButton
             // 
-            startButton.Location = new System.Drawing.Point(135, 549);
+            startButton.Location = new System.Drawing.Point(217, 549);
             startButton.Margin = new Padding(4, 5, 4, 5);
             startButton.Name = "startButton";
-            startButton.Size = new System.Drawing.Size(327, 65);
-            startButton.TabIndex = 46;
+            startButton.Size = new System.Drawing.Size(245, 65);
+            startButton.TabIndex = 2;
             startButton.Text = "СТАРТ";
             startButton.UseVisualStyleBackColor = true;
-            startButton.Click += startButton_Click;
+            startButton.Click += StartButton_Click;
             // 
             // wordsListBox
             // 
@@ -83,8 +84,8 @@ namespace SlovoZaSlovo
             wordsListBox.Margin = new Padding(4, 5, 4, 5);
             wordsListBox.Name = "wordsListBox";
             wordsListBox.Size = new System.Drawing.Size(571, 584);
-            wordsListBox.TabIndex = 47;
-            wordsListBox.SelectedIndexChanged += wordsListBox_SelectedIndexChanged;
+            wordsListBox.TabIndex = 3;
+            wordsListBox.SelectedIndexChanged += WordsListBox_SelectedIndexChanged;
             // 
             // letterPanel
             // 
@@ -117,7 +118,7 @@ namespace SlovoZaSlovo
             letterPanel.Margin = new Padding(4, 5, 4, 5);
             letterPanel.Name = "letterPanel";
             letterPanel.Size = new System.Drawing.Size(455, 521);
-            letterPanel.TabIndex = 48;
+            letterPanel.TabIndex = 1;
             // 
             // slovoTextBox55
             // 
@@ -349,7 +350,7 @@ namespace SlovoZaSlovo
             button1.Location = new System.Drawing.Point(17, 551);
             button1.Margin = new Padding(4, 5, 4, 5);
             button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(109, 62);
+            button1.Size = new System.Drawing.Size(92, 62);
             button1.TabIndex = 49;
             button1.Text = "Заполнить";
             button1.UseVisualStyleBackColor = true;
@@ -364,11 +365,22 @@ namespace SlovoZaSlovo
             label1.TabIndex = 50;
             label1.Text = "label1";
             // 
+            // ClearButton
+            // 
+            ClearButton.Location = new System.Drawing.Point(116, 551);
+            ClearButton.Name = "ClearButton";
+            ClearButton.Size = new System.Drawing.Size(94, 62);
+            ClearButton.TabIndex = 51;
+            ClearButton.Text = "Очистить";
+            ClearButton.UseVisualStyleBackColor = true;
+            ClearButton.Click += ClearButton_Click;
+            // 
             // FormModified
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1067, 692);
+            Controls.Add(ClearButton);
             Controls.Add(label1);
             Controls.Add(button1);
             Controls.Add(letterPanel);
@@ -413,5 +425,6 @@ namespace SlovoZaSlovo
         private SlovoTextBox slovoTextBox12;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
+        private Button ClearButton;
     }
 }
