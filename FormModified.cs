@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.IO;
 using Microsoft.VisualBasic;
 using System.Collections.ObjectModel;
+using System.Globalization;
+
 
 namespace SlovoZaSlovo
 {
@@ -61,10 +63,11 @@ namespace SlovoZaSlovo
             Point[,] charArr = new Point[5, 5];
             HashSet<Answer> answersHashSet = new HashSet<Answer>();
             //List<string> StringList = new List<string>();
-            string path_nouns = "russian_nouns.txt";
-            string path_verbs = "russian_verbs.txt";
+            //string path_nouns = "russian_nouns.txt";
+            //string path_verbs = "russian_verbs.txt";
             string path_adject = "russian_adject.txt";
-            string[] paths = new string[3] { "russian_nouns.txt", "russian_verbs.txt", "russian_adject.txt" };
+            //string[] paths = new string[3] { "russian_nouns.txt", "russian_verbs.txt", "russian_adject.txt" };
+            string[] paths = new string[1] { "russian_nouns.txt"};
             int Rows = charArr.GetLength(0);
             int Cols = charArr.GetLength(1);
             var root = new TrieNode();
@@ -183,6 +186,13 @@ namespace SlovoZaSlovo
             }
             //wordsListBox.DataSource = null; ;
             //letterPanel.ResumeLayout();
+
+            InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new CultureInfo("ru-RU"));
+        }
+
+        private void FormModified_Load(object sender, EventArgs e)
+        {
+            InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new CultureInfo("ru-RU"));
         }
     }
 }
