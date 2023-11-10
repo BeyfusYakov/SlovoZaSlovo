@@ -8,7 +8,7 @@ namespace SlovoZaSlovo
 {
     internal static class ListExtension
     {
-        public static List<T> CloneAndAdd<T>(this List<T> source, T a)
+        internal static List<T> CloneAndAdd<T>(this List<T> source, T a)
         {
             List<T> tempList = new List<T>(source.Count+1);
             
@@ -16,8 +16,7 @@ namespace SlovoZaSlovo
             tempList.Add(a);
             return tempList;
         }
-
-        public static List<T> Clone<T>(this List<T> source)
+        internal static List<T> Clone<T>(this List<T> source)
         {
             return source.GetRange(0, source.Count);
         }

@@ -80,10 +80,11 @@ namespace SlovoZaSlovo
             UCtextBox.Size = new Size(74, 53);
             UCtextBox.TabIndex = 0;
             UCtextBox.TextAlign = HorizontalAlignment.Center;
-            UCtextBox.Click += UC_Click;
-            //UCtextBox.KeyDown += UC_KeyPress;
-            //UCtextBox.KeyPress += UC_KeyPress;
-            UCtextBox.KeyUp += UC_KeyPress;
+            //UCtextBox.Click += UC_Click;
+            //UCtextBox.KeyUp += UC_KeyPress;
+            UCtextBox.KeyPress += UC_KeyPress;
+            UCtextBox.MouseWheel += UC_KeyWhell;
+            UCtextBox.GotFocus += UCtextBox_GotFocus;
             // 
             // SlovoTextBox
             // 
@@ -97,6 +98,12 @@ namespace SlovoZaSlovo
             UCPanel.PerformLayout();
             ResumeLayout(false);
             
+        }
+
+        private void UCtextBox_GotFocus(object sender, System.EventArgs e)
+        {
+            //(sender as TextBox).SelectAll();
+            ((TextBox)sender).SelectAll();
         }
 
         #endregion

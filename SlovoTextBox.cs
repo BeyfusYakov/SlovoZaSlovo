@@ -13,8 +13,6 @@ namespace SlovoZaSlovo
 {
     public partial class SlovoTextBox : UserControl
     {
-        //[System.ComponentModel.Bindable(true)]
-        //public bool IsTabStop { get; set; } = true;
         public enum FactorValue
         {
             None = 0,
@@ -94,8 +92,6 @@ namespace SlovoZaSlovo
 
         private void UC_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Click");
-            //switch (Factor)
             switch (CurentFactorValue)
             {
                 case FactorValue.None:
@@ -121,17 +117,37 @@ namespace SlovoZaSlovo
             }
         }
 
-        private void UC_KeyPress(object sender, KeyEventArgs e)
-        {
-            if (e.KeyData != Keys.Tab && e.KeyData != Keys.ControlKey && e.KeyData != Keys.Alt && e.KeyData != Keys.ShiftKey)
+        private void UC_KeyWhell(object sender, MouseEventArgs e)
             {
+                if (e.Delta<0)
+                {
+                    //сделать через индексатор
+                    Factor = FactorValue.None;
+                    CurentFactorValue = FactorValue.None;
+                }
+                else
+                {
+                    Factor = FactorValue.x2;
+                    CurentFactorValue = FactorValue.x2;
+                }
+            }
 
-                //this.SelectNextControl(((Control)sender).Parent.Parent.Parent, true, false, false, false);
-                //this.SelectNextControl(((Control)sender).Parent.Parent, true, true, true, true);
-                //this.SelectNextControl((Control)sender, true, true, true, false);
-                //this.SelectNextControl((Control)sender, true, true, false, false);
-                SendKeys.Send("{TAB}");
-                //MessageBox.Show("as");
+
+        private void UC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            var number = e.KeyChar;
+            if (number == 8)
+            {
+                this.Parent.SelectNextControl(((Control)sender).Parent.Parent, false, false, false, false);
+                e.Handled = true;
+            }
+            else if (number < 'А' || number > 'я') 
+            {
+                e.Handled = true;
+            }
+            else
+            { 
+                this.Parent.SelectNextControl(((Control)sender).Parent.Parent, true, false, false, false);
             }
         }
     }

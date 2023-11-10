@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using Microsoft.VisualBasic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 
@@ -26,24 +25,19 @@ namespace SlovoZaSlovo
 
         void WordsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //string selectedItem = wordsListBox.SelectedItem.ToString();
             int indexOfAnswer = wordsListBox.SelectedIndex;
-            //MessageBox.Show(answerList[indexOfAnswer].Word);
 
-            for (int i = 0; i < 5; i++)
+            foreach (SlovoTextBox control in letterPanel.Controls)
             {
-                for (int j = 0; j < 5; j++)
-                {
-                    {
-                        (letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Highlight = false;
-                    }
-                }
+                control.Highlight = false;
             }
 
-
-            foreach (var p in answerList[indexOfAnswer].Points)
+            if (indexOfAnswer >= 0)
             {
-                (letterPanel.Controls[$"slovoTextBox{p.X + 1}{p.Y + 1}"] as SlovoTextBox).Highlight = true;
+                foreach (var p in answerList[indexOfAnswer].Points)
+                {
+                    (letterPanel.Controls[$"slovoTextBox{p.X + 1}{p.Y + 1}"] as SlovoTextBox).Highlight = true;
+                }
             }
 
             for (int i = 0; i < 5; i++)
@@ -62,83 +56,81 @@ namespace SlovoZaSlovo
         {
             Point[,] charArr = new Point[5, 5];
             HashSet<Answer> answersHashSet = new HashSet<Answer>();
-            //List<string> StringList = new List<string>();
-            //string path_nouns = "russian_nouns.txt";
-            //string path_verbs = "russian_verbs.txt";
-            string path_adject = "russian_adject.txt";
-            //string[] paths = new string[3] { "russian_nouns.txt", "russian_verbs.txt", "russian_adject.txt" };
-            string[] paths = new string[1] { "russian_nouns.txt"};
+            //string path_adject = "russian_adject.txt";
+            string[] paths = new string[3] { "russian_nouns.txt", "russian_verbs.txt", "russian_adject.txt" };
             int Rows = charArr.GetLength(0);
             int Cols = charArr.GetLength(1);
             var root = new TrieNode();
             Point[,] board = new Point[5, 5];
 
 
-            #region первый вариант
-
-            ///
-            /// оба варианта работают практически одинаково долго)
-            ///
-            //using StreamReader reader = new StreamReader(path);
-            //while (!reader.EndOfStream)
-            //{
-            //    wordsList.Add(reader.ReadLine()); //В лист работает гораздо быстрее
-            //}
-            #endregion
-
-
-            #region второй вариант 
-            string appPath = Application.StartupPath;
-
-
-            //var files = Directory.EnumerateFiles(appPath, "russian*.txt");
-            //var filesContent = files.Select(filePath => File.ReadAllLines(filePath));
-
-
-            foreach (string path in paths)
-            {
-                var myList = File.ReadAllLines(path);
-                foreach (var item in myList)
-                {
-                    root.Add(item, 0);
-                }
-            }
-
-            #endregion
-
-
             #region удаление ненужных слов из словаря
 
-            //StreamWriter f = new StreamWriter(path_adject + "out-.txt");
-            //foreach (string word in myList)
+            ///*//---- удаление ненужных слов из словаря*/
+            //List<string> tempList = new();
+            //using StreamReader reader = new StreamReader("zdf-win.txt");
+            //while (!reader.EndOfStream) tempList.Add(reader.ReadLine()); 
+
+            //StreamWriter f = new StreamWriter("zdf-win" + "-out.txt");
+            //foreach (string word in tempList)
             //{
             //    if (!word.Contains("-"))
+            //    //if (word.EndsWith("ать") || word.EndsWith("ять") || word.EndsWith("ыть") || word.EndsWith("ить") || word.EndsWith("уть") || word.EndsWith("ють") || word.EndsWith("оть") ||
+            //    //    word.EndsWith("аться") || word.EndsWith("яться") || word.EndsWith("ыться") || word.EndsWith("иться") || word.EndsWith("уться") || word.EndsWith("ються") || word.EndsWith("оться") 
+            //    //    )
             //    {
             //        f.WriteLine(word);
             //    }
             //}
             //f.Close();
+            ///*//---- конец удаление ненужных слов из словаря*/
 
             #endregion
 
+
+            foreach (string path in paths)
+            {
+                try
+                {
+                    string[] myList = File.ReadAllLines(path);
+                    foreach (var item in myList)
+                    {
+                        root.Add(item, 0);
+                    }
+                }
+                catch (FileNotFoundException) { }
+            }
+
+            #region второй вариант 
+            //string appPath = Application.StartupPath;
+            //var files = Directory.EnumerateFiles(appPath, "russian*.txt");
+            //var filesContent = files.Select(filePath => File.ReadAllLines(filePath));
+            #endregion
+
+
+
             for (int i = 0; i < Rows; i++)
             {
-                //board[i] = new char[Rows];
                 for (int j = 0; j < Cols; j++)
                 {
                     if (!string.IsNullOrEmpty((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text))
                     {
-                        //charArr[i, j] = new Point(i, j, Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text), (byte)((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor));
-                        //board[i,j] = Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text);
                         board[i, j] = new Point(i, j, Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text), (byte)((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor));
+                    }
+                    else
+                    {
+                        statusLabel.ForeColor = Color.Red;
+                        statusLabel.Text = "Не все поля заполнены";
+                        return;
                     }
                 }
             }
 
-            //answersHashSet = WordsClassTrie.FindWords(board, root);
-            answerList = WordsClassTrie.FindWords(board, root).OrderByDescending(x => x.Cost).ToList();
+            // запустить в одтельном потоке
+            answerList = WordsClass.FindWords(board, root).OrderByDescending(x => x.Cost).ToList();
             wordsListBox.DataSource = answerList;
-            label1.Text = answerList.Count.ToString();
+            statusLabel.ForeColor = Color.Black;
+            statusLabel.Text = "Найдено слов: " + answerList.Count.ToString();
             wordsListBox.Focus();
 
         }
@@ -147,6 +139,20 @@ namespace SlovoZaSlovo
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //try
+            //{
+            //    throw new Exception("Exception from try!");
+            //}
+            //catch (Exception)
+            //{
+            //    throw new Exception("Exception from catch!");
+            //}
+            //finally
+            //{
+            //    Console.WriteLine("Yes! It will be executed and logged");
+            //}
+            this.SelectNextControl((Control)sender, true, false, false, false);
+
             (letterPanel.Controls[$"slovoTextBox{1}{1}"] as SlovoTextBox).Text = "А";
             (letterPanel.Controls[$"slovoTextBox{1}{2}"] as SlovoTextBox).Text = "Р";
             (letterPanel.Controls[$"slovoTextBox{1}{3}"] as SlovoTextBox).Text = "Б";
@@ -180,17 +186,15 @@ namespace SlovoZaSlovo
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            foreach(Control control in letterPanel.Controls)
+            foreach (SlovoTextBox control in letterPanel.Controls)
             {
                 control.Text = string.Empty;
+                control.Factor = SlovoTextBox.FactorValue.None;
             }
-            //wordsListBox.DataSource = null; ;
-            //letterPanel.ResumeLayout();
-
-            InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new CultureInfo("ru-RU"));
+            wordsListBox.DataSource = null; 
         }
 
-        private void FormModified_Load(object sender, EventArgs e)
+        private void FormModified_Shown(object sender, EventArgs e)
         {
             InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new CultureInfo("ru-RU"));
         }
