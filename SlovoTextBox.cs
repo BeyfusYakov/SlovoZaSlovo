@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
+
 namespace SlovoZaSlovo
 {
     public partial class SlovoTextBox : UserControl
@@ -16,10 +17,11 @@ namespace SlovoZaSlovo
         public enum FactorValue
         {
             None = 0,
-            C2,
             C3,
-            x2,
-            x3
+            C2,
+            x3,
+            x2
+
         }
         private FactorValue factor;
         public bool Highlight;
@@ -31,7 +33,7 @@ namespace SlovoZaSlovo
             set
             {
                 factor = value;
-
+                
                 switch (value)
                 {
                     case FactorValue.None:
@@ -92,45 +94,23 @@ namespace SlovoZaSlovo
 
         private void UC_Click(object sender, EventArgs e)
         {
-            switch (CurentFactorValue)
-            {
-                case FactorValue.None:
-                    Factor = FactorValue.C3;
-                    CurentFactorValue = FactorValue.C3;
-                    break;
-                case FactorValue.C3:
-                    Factor = FactorValue.C2;
-                    CurentFactorValue = FactorValue.C2;
-                    break;
-                case FactorValue.C2:
-                    Factor = FactorValue.x3;
-                    CurentFactorValue = FactorValue.x3;
-                    break;
-                case FactorValue.x3:
-                    Factor = FactorValue.x2;
-                    CurentFactorValue = FactorValue.x2;
-                    break;
-                case FactorValue.x2:
-                    Factor = FactorValue.None;
-                    CurentFactorValue = FactorValue.None;
-                    break;
-            }
+            CurentFactorValue = CurentFactorValue.Next();
+            Factor = CurentFactorValue;
         }
 
         private void UC_KeyWhell(object sender, MouseEventArgs e)
+        {
+            if (e.Delta<0)
             {
-                if (e.Delta<0)
-                {
-                    //сделать через индексатор
-                    Factor = FactorValue.None;
-                    CurentFactorValue = FactorValue.None;
-                }
-                else
-                {
-                    Factor = FactorValue.x2;
-                    CurentFactorValue = FactorValue.x2;
-                }
+                CurentFactorValue = CurentFactorValue.Next();
+                Factor = CurentFactorValue;
             }
+            else
+            {
+                CurentFactorValue = CurentFactorValue.Prev();
+                Factor = CurentFactorValue;
+            }
+        }
 
 
         private void UC_KeyPress(object sender, KeyPressEventArgs e)

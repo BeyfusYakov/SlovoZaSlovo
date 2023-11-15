@@ -103,6 +103,7 @@ namespace SlovoZaSlovo
         private void UCtextBox_GotFocus(object sender, System.EventArgs e)
         {
             //(sender as TextBox).SelectAll();
+            // if (sender is TextBox)
             ((TextBox)sender).SelectAll();
         }
 

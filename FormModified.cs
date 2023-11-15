@@ -192,6 +192,7 @@ namespace SlovoZaSlovo
                 control.Factor = SlovoTextBox.FactorValue.None;
             }
             wordsListBox.DataSource = null; 
+            statusLabel.Text = string.Empty;
         }
 
         private void FormModified_Shown(object sender, EventArgs e)
