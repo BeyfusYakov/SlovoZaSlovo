@@ -21,8 +21,14 @@ namespace SlovoZaSlovo
             C2,
             x3,
             x2
-
         }
+        private static readonly (string, Color)[] FactorProp = new (string, Color)[] 
+        { (string.Empty, Color.Black),
+          ("С3", Color.Blue),
+          ("С2", Color.Red),
+          ("x3", Color.Blue),
+          ("x2", Color.Red)};
+
         private FactorValue factor;
         public bool Highlight;
         public static FactorValue CurentFactorValue = FactorValue.None;
@@ -33,31 +39,8 @@ namespace SlovoZaSlovo
             set
             {
                 factor = value;
-                
-                switch (value)
-                {
-                    case FactorValue.None:
-                        this.UClabel.Text = string.Empty;
-                        break;
-                    case FactorValue.C3:
-                        this.UClabel.ForeColor = Color.Blue;
-                        this.UClabel.Text = FactorValue.C3.ToString();
-                        break;
-                    case FactorValue.C2:
-                        this.UClabel.ForeColor = Color.Red;
-                        this.UClabel.Text = FactorValue.C2.ToString();
-                        break;
-                    case FactorValue.x3:
-                        this.UClabel.ForeColor = Color.Blue;
-                        this.UClabel.Text = FactorValue.x3.ToString();
-                        break;
-                    case FactorValue.x2:
-                        this.UClabel.ForeColor = Color.Red;
-                        this.UClabel.Text = FactorValue.x2.ToString();
-                        break;
-                    default:
-                        break;
-                }
+                this.UClabel.Text = FactorProp[(int)factor].Item1;
+                this.UClabel.ForeColor = FactorProp[(int)factor].Item2;
             }
         }
 
