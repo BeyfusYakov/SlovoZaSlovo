@@ -115,7 +115,7 @@ namespace SlovoZaSlovo
                 {
                     if (!string.IsNullOrEmpty((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text))
                     {
-                        board[i, j] = new Point(i, j, Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text), (byte)((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor));
+                        board[i, j] = new Point(i, j, Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text), (byte)((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor.Id));
                     }
                     else
                     {
@@ -189,7 +189,7 @@ namespace SlovoZaSlovo
             foreach (SlovoTextBox control in letterPanel.Controls)
             {
                 control.Text = string.Empty;
-                control.Factor = SlovoTextBox.FactorValue.None;
+                control.Factor = FactorValueContainer.FactorProp[0];
             }
             wordsListBox.DataSource = null; 
             statusLabel.Text = string.Empty;

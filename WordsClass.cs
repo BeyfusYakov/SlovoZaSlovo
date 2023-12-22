@@ -27,7 +27,7 @@ namespace SlovoZaSlovo
 
            return ret;
         }
-        public static int CalkCost(List<Point> ListOfPoints)
+        public static int CalcCost(List<Point> ListOfPoints)
         {
             int tmpCost = 0;
             int tmpFactor = 1;

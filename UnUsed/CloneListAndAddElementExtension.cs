@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SlovoZaSlovo
+namespace SlovoZaSlovo.UnUsed
 {
     internal static class ListExtension
     {
         internal static List<T> CloneAndAdd<T>(this List<T> source, T a)
         {
-            List<T> tempList = new List<T>(source.Count+1);
-            
+            List<T> tempList = new List<T>(source.Count + 1);
+
             tempList = source.GetRange(0, source.Count);
             tempList.Add(a);
             return tempList;

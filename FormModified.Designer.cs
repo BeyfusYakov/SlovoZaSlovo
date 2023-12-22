@@ -122,7 +122,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox55
             // 
-            slovoTextBox55.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox55.Location = new System.Drawing.Point(365, 419);
             slovoTextBox55.Margin = new Padding(5);
             slovoTextBox55.Name = "slovoTextBox55";
@@ -131,7 +130,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox51
             // 
-            slovoTextBox51.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox51.Location = new System.Drawing.Point(11, 419);
             slovoTextBox51.Margin = new Padding(5);
             slovoTextBox51.Name = "slovoTextBox51";
@@ -140,7 +138,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox54
             // 
-            slovoTextBox54.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox54.Location = new System.Drawing.Point(277, 419);
             slovoTextBox54.Margin = new Padding(5);
             slovoTextBox54.Name = "slovoTextBox54";
@@ -149,7 +146,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox53
             // 
-            slovoTextBox53.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox53.Location = new System.Drawing.Point(187, 419);
             slovoTextBox53.Margin = new Padding(5);
             slovoTextBox53.Name = "slovoTextBox53";
@@ -158,7 +154,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox52
             // 
-            slovoTextBox52.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox52.Location = new System.Drawing.Point(101, 419);
             slovoTextBox52.Margin = new Padding(5);
             slovoTextBox52.Name = "slovoTextBox52";
@@ -167,7 +162,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox45
             // 
-            slovoTextBox45.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox45.Location = new System.Drawing.Point(365, 315);
             slovoTextBox45.Margin = new Padding(5);
             slovoTextBox45.Name = "slovoTextBox45";
@@ -176,7 +170,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox41
             // 
-            slovoTextBox41.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox41.Location = new System.Drawing.Point(11, 315);
             slovoTextBox41.Margin = new Padding(5);
             slovoTextBox41.Name = "slovoTextBox41";
@@ -185,7 +178,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox44
             // 
-            slovoTextBox44.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox44.Location = new System.Drawing.Point(277, 317);
             slovoTextBox44.Margin = new Padding(5);
             slovoTextBox44.Name = "slovoTextBox44";
@@ -194,7 +186,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox43
             // 
-            slovoTextBox43.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox43.Location = new System.Drawing.Point(187, 317);
             slovoTextBox43.Margin = new Padding(5);
             slovoTextBox43.Name = "slovoTextBox43";
@@ -203,7 +194,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox42
             // 
-            slovoTextBox42.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox42.Location = new System.Drawing.Point(101, 315);
             slovoTextBox42.Margin = new Padding(5);
             slovoTextBox42.Name = "slovoTextBox42";
@@ -212,7 +202,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox35
             // 
-            slovoTextBox35.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox35.Location = new System.Drawing.Point(365, 213);
             slovoTextBox35.Margin = new Padding(5);
             slovoTextBox35.Name = "slovoTextBox35";
@@ -221,7 +210,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox31
             // 
-            slovoTextBox31.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox31.Location = new System.Drawing.Point(11, 213);
             slovoTextBox31.Margin = new Padding(5);
             slovoTextBox31.Name = "slovoTextBox31";
@@ -230,7 +218,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox34
             // 
-            slovoTextBox34.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox34.Location = new System.Drawing.Point(277, 215);
             slovoTextBox34.Margin = new Padding(5);
             slovoTextBox34.Name = "slovoTextBox34";
@@ -239,7 +226,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox33
             // 
-            slovoTextBox33.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox33.Location = new System.Drawing.Point(187, 215);
             slovoTextBox33.Margin = new Padding(5);
             slovoTextBox33.Name = "slovoTextBox33";
@@ -248,7 +234,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox32
             // 
-            slovoTextBox32.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox32.Location = new System.Drawing.Point(101, 213);
             slovoTextBox32.Margin = new Padding(5);
             slovoTextBox32.Name = "slovoTextBox32";
@@ -257,7 +242,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox25
             // 
-            slovoTextBox25.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox25.Location = new System.Drawing.Point(365, 112);
             slovoTextBox25.Margin = new Padding(5);
             slovoTextBox25.Name = "slovoTextBox25";
@@ -266,7 +250,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox21
             // 
-            slovoTextBox21.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox21.Location = new System.Drawing.Point(11, 112);
             slovoTextBox21.Margin = new Padding(5);
             slovoTextBox21.Name = "slovoTextBox21";
@@ -275,7 +258,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox24
             // 
-            slovoTextBox24.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox24.Location = new System.Drawing.Point(277, 115);
             slovoTextBox24.Margin = new Padding(5);
             slovoTextBox24.Name = "slovoTextBox24";
@@ -284,7 +266,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox23
             // 
-            slovoTextBox23.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox23.Location = new System.Drawing.Point(187, 115);
             slovoTextBox23.Margin = new Padding(5);
             slovoTextBox23.Name = "slovoTextBox23";
@@ -293,7 +274,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox22
             // 
-            slovoTextBox22.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox22.Location = new System.Drawing.Point(101, 112);
             slovoTextBox22.Margin = new Padding(5);
             slovoTextBox22.Name = "slovoTextBox22";
@@ -302,7 +282,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox15
             // 
-            slovoTextBox15.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox15.Location = new System.Drawing.Point(365, 11);
             slovoTextBox15.Margin = new Padding(5);
             slovoTextBox15.Name = "slovoTextBox15";
@@ -311,7 +290,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox11
             // 
-            slovoTextBox11.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox11.Location = new System.Drawing.Point(11, 11);
             slovoTextBox11.Margin = new Padding(5);
             slovoTextBox11.Name = "slovoTextBox11";
@@ -320,7 +298,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox14
             // 
-            slovoTextBox14.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox14.Location = new System.Drawing.Point(277, 12);
             slovoTextBox14.Margin = new Padding(5);
             slovoTextBox14.Name = "slovoTextBox14";
@@ -329,7 +306,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox13
             // 
-            slovoTextBox13.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox13.Location = new System.Drawing.Point(187, 12);
             slovoTextBox13.Margin = new Padding(5);
             slovoTextBox13.Name = "slovoTextBox13";
@@ -338,7 +314,6 @@ namespace SlovoZaSlovo
             // 
             // slovoTextBox12
             // 
-            slovoTextBox12.Factor = SlovoTextBox.FactorValue.None;
             slovoTextBox12.Location = new System.Drawing.Point(101, 11);
             slovoTextBox12.Margin = new Padding(5);
             slovoTextBox12.Name = "slovoTextBox12";

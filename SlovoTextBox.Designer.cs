@@ -61,9 +61,8 @@ namespace SlovoZaSlovo
             UClabel.Location = new System.Drawing.Point(1, 67);
             UClabel.Margin = new Padding(0);
             UClabel.Name = "UClabel";
-            UClabel.Size = new Size(27, 17);
+            UClabel.Size = new Size(0, 17);
             UClabel.TabIndex = 1;
-            UClabel.Text = "C0";
             UClabel.TextAlign = ContentAlignment.BottomLeft;
             UClabel.Click += UC_Click;
             // 
@@ -80,11 +79,9 @@ namespace SlovoZaSlovo
             UCtextBox.Size = new Size(74, 53);
             UCtextBox.TabIndex = 0;
             UCtextBox.TextAlign = HorizontalAlignment.Center;
-            //UCtextBox.Click += UC_Click;
-            //UCtextBox.KeyUp += UC_KeyPress;
+            UCtextBox.GotFocus += UCtextBox_GotFocus;
             UCtextBox.KeyPress += UC_KeyPress;
             UCtextBox.MouseWheel += UC_KeyWhell;
-            UCtextBox.GotFocus += UCtextBox_GotFocus;
             // 
             // SlovoTextBox
             // 
@@ -97,7 +94,6 @@ namespace SlovoZaSlovo
             UCPanel.ResumeLayout(false);
             UCPanel.PerformLayout();
             ResumeLayout(false);
-            
         }
 
         private void UCtextBox_GotFocus(object sender, System.EventArgs e)

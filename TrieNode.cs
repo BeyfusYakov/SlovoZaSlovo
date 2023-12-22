@@ -30,7 +30,7 @@ namespace SlovoZaSlovo
             if (j < 0 || j >= board.GetLength(1)) return;
             if (usedBoard[i, j]) return;
 
-            if (word != null) ret.Add(new Answer(word, WordsClass.CalkCost(ListOfPoints), new List<Point>(ListOfPoints)));
+            if (word != null) ret.Add(new Answer(word, WordsClass.CalcCost(ListOfPoints), new List<Point>(ListOfPoints)));
             
             ListOfPoints.Add(board[i, j]);
             usedBoard[i, j] = true;

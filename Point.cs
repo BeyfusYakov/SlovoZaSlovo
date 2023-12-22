@@ -10,13 +10,9 @@ namespace SlovoZaSlovo
     public class Point ///*record*/ работает медленнее
     {
         public readonly int X;
-        // public int X { get => x; set => x = value; }
         public readonly int Y;
-        //  public int Y { get => y; set => y = value; }
         public readonly char Val;
-        // public char Val { get => val; set => val = value; }
         public readonly int Factor;
-      //  public int Factor { get => factor; set => factor = value; }
         public Point(int x, int y, char val, int factor = 0)
         {
             this.X = x;
@@ -26,7 +22,7 @@ namespace SlovoZaSlovo
         }
         public override string ToString()
         {
-            return $"{X}.{Y}({Val})";
+            return $"{Val}({X+1}.{Y+1})";
         }
 
     }

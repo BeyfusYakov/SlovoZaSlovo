@@ -14,33 +14,18 @@ namespace SlovoZaSlovo
 {
     public partial class SlovoTextBox : UserControl
     {
-        public enum FactorValue
-        {
-            None = 0,
-            C3,
-            C2,
-            x3,
-            x2
-        }
-        private static readonly (string, Color)[] FactorProp = new (string, Color)[] 
-        { (string.Empty, Color.Black),
-          ("С3", Color.Blue),
-          ("С2", Color.Red),
-          ("x3", Color.Blue),
-          ("x2", Color.Red)};
-
-        private FactorValue factor;
         public bool Highlight;
-        public static FactorValue CurentFactorValue = FactorValue.None;
 
-        public FactorValue Factor
+        private FactorValueClass factor;// = FactorValueContainer.FactorProp[0];
+
+        internal FactorValueClass Factor
         {
             get => factor;
             set
             {
                 factor = value;
-                this.UClabel.Text = FactorProp[(int)factor].Item1;
-                this.UClabel.ForeColor = FactorProp[(int)factor].Item2;
+                this.UClabel.Text = factor.Name;
+                this.UClabel.ForeColor = factor.ColorValue;
             }
         }
 
@@ -50,18 +35,8 @@ namespace SlovoZaSlovo
         public SlovoTextBox()
         {
             InitializeComponent();
-            if (factor != FactorValue.None)
-                this.UClabel.Text = factor.ToString();
-            else
-            {
-                this.UClabel.Text = "";
-            }
-
-            this.UCtextBox.Text = "";
 
             this.UCPanel.Paint += new PaintEventHandler(UCPaint);
-            //this.UCtextBox.Paint += new PaintEventHandler(UCPaint);
-            //this.UClabel.Paint += new PaintEventHandler(UCPaint);
 
             void UCPaint(object sender, PaintEventArgs e)
             {
@@ -77,22 +52,12 @@ namespace SlovoZaSlovo
 
         private void UC_Click(object sender, EventArgs e)
         {
-            CurentFactorValue = CurentFactorValue.Next();
-            Factor = CurentFactorValue;
+            Factor = FactorValueContainer.Next();
         }
 
         private void UC_KeyWhell(object sender, MouseEventArgs e)
         {
-            if (e.Delta<0)
-            {
-                CurentFactorValue = CurentFactorValue.Next();
-                Factor = CurentFactorValue;
-            }
-            else
-            {
-                CurentFactorValue = CurentFactorValue.Prev();
-                Factor = CurentFactorValue;
-            }
+            Factor = (e.Delta < 0)? FactorValueContainer.Next() : FactorValueContainer.Prev();
         }
 
 
@@ -104,12 +69,12 @@ namespace SlovoZaSlovo
                 this.Parent.SelectNextControl(((Control)sender).Parent.Parent, false, false, false, false);
                 e.Handled = true;
             }
-            else if (number < 'А' || number > 'я') 
+            else if (number < 'А' || number > 'я')
             {
                 e.Handled = true;
             }
             else
-            { 
+            {
                 this.Parent.SelectNextControl(((Control)sender).Parent.Parent, true, false, false, false);
             }
         }
