@@ -11,11 +11,11 @@ namespace SlovoZaSlovo
 {
     internal class FactorValueClass
     {
-        public readonly int Id;
+        public readonly byte Id;
         public readonly string Name;
         public readonly Color ColorValue;
 
-        public FactorValueClass(int id, string name, Color colorValue)
+        public FactorValueClass(byte id, string name, Color colorValue)
         {
             Id = id;
             Name = name;

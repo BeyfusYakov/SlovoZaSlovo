@@ -56,7 +56,6 @@ namespace SlovoZaSlovo
         {
             Point[,] charArr = new Point[5, 5];
             HashSet<Answer> answersHashSet = new HashSet<Answer>();
-            //string path_adject = "russian_adject.txt";
             string[] paths = new string[3] { "russian_nouns.txt", "russian_verbs.txt", "russian_adject.txt" };
             int Rows = charArr.GetLength(0);
             int Cols = charArr.GetLength(1);
@@ -115,7 +114,7 @@ namespace SlovoZaSlovo
                 {
                     if (!string.IsNullOrEmpty((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text))
                     {
-                        board[i, j] = new Point(i, j, Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text), (byte)((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor.Id));
+                        board[i, j] = new Point(i, j, Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text), (letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor.Id);
                     }
                     else
                     {
@@ -126,8 +125,7 @@ namespace SlovoZaSlovo
                 }
             }
 
-            // запустить в одтельном потоке
-            answerList = WordsClass.FindWords(board, root).OrderByDescending(x => x.Cost).ToList();
+            answerList = await Task.Run(() => TrieNode.FindWords(board, root).OrderByDescending(x => x.Cost).ToList());
             wordsListBox.DataSource = answerList;
             statusLabel.ForeColor = Color.Black;
             statusLabel.Text = "Найдено слов: " + answerList.Count.ToString();
@@ -135,54 +133,44 @@ namespace SlovoZaSlovo
 
         }
 
+        #region Автозаполнение ТекстБоксов
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+        //    this.SelectNextControl((Control)sender, true, false, false, false);
 
+        //    (letterPanel.Controls[$"slovoTextBox{1}{1}"] as SlovoTextBox).Text = "А";
+        //    (letterPanel.Controls[$"slovoTextBox{1}{2}"] as SlovoTextBox).Text = "Р";
+        //    (letterPanel.Controls[$"slovoTextBox{1}{3}"] as SlovoTextBox).Text = "Б";
+        //    (letterPanel.Controls[$"slovoTextBox{1}{4}"] as SlovoTextBox).Text = "У";
+        //    (letterPanel.Controls[$"slovoTextBox{1}{5}"] as SlovoTextBox).Text = "З";
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    throw new Exception("Exception from try!");
-            //}
-            //catch (Exception)
-            //{
-            //    throw new Exception("Exception from catch!");
-            //}
-            //finally
-            //{
-            //    Console.WriteLine("Yes! It will be executed and logged");
-            //}
-            this.SelectNextControl((Control)sender, true, false, false, false);
+        //    (letterPanel.Controls[$"slovoTextBox{2}{1}"] as SlovoTextBox).Text = "З";
+        //    (letterPanel.Controls[$"slovoTextBox{2}{2}"] as SlovoTextBox).Text = "И";
+        //    (letterPanel.Controls[$"slovoTextBox{2}{3}"] as SlovoTextBox).Text = "М";
+        //    (letterPanel.Controls[$"slovoTextBox{2}{4}"] as SlovoTextBox).Text = "Ы";
+        //    (letterPanel.Controls[$"slovoTextBox{2}{5}"] as SlovoTextBox).Text = "Й";
 
-            (letterPanel.Controls[$"slovoTextBox{1}{1}"] as SlovoTextBox).Text = "А";
-            (letterPanel.Controls[$"slovoTextBox{1}{2}"] as SlovoTextBox).Text = "Р";
-            (letterPanel.Controls[$"slovoTextBox{1}{3}"] as SlovoTextBox).Text = "Б";
-            (letterPanel.Controls[$"slovoTextBox{1}{4}"] as SlovoTextBox).Text = "У";
-            (letterPanel.Controls[$"slovoTextBox{1}{5}"] as SlovoTextBox).Text = "З";
+        //    (letterPanel.Controls[$"slovoTextBox{3}{1}"] as SlovoTextBox).Text = "А";
+        //    (letterPanel.Controls[$"slovoTextBox{3}{2}"] as SlovoTextBox).Text = "К";
+        //    (letterPanel.Controls[$"slovoTextBox{3}{3}"] as SlovoTextBox).Text = "У";
+        //    (letterPanel.Controls[$"slovoTextBox{3}{4}"] as SlovoTextBox).Text = "Л";
+        //    (letterPanel.Controls[$"slovoTextBox{3}{5}"] as SlovoTextBox).Text = "А";
 
-            (letterPanel.Controls[$"slovoTextBox{2}{1}"] as SlovoTextBox).Text = "З";
-            (letterPanel.Controls[$"slovoTextBox{2}{2}"] as SlovoTextBox).Text = "И";
-            (letterPanel.Controls[$"slovoTextBox{2}{3}"] as SlovoTextBox).Text = "М";
-            (letterPanel.Controls[$"slovoTextBox{2}{4}"] as SlovoTextBox).Text = "Ы";
-            (letterPanel.Controls[$"slovoTextBox{2}{5}"] as SlovoTextBox).Text = "Й";
+        //    (letterPanel.Controls[$"slovoTextBox{4}{1}"] as SlovoTextBox).Text = "К";
+        //    (letterPanel.Controls[$"slovoTextBox{4}{2}"] as SlovoTextBox).Text = "У";
+        //    (letterPanel.Controls[$"slovoTextBox{4}{3}"] as SlovoTextBox).Text = "П";
+        //    (letterPanel.Controls[$"slovoTextBox{4}{4}"] as SlovoTextBox).Text = "И";
+        //    (letterPanel.Controls[$"slovoTextBox{4}{5}"] as SlovoTextBox).Text = "Т";
 
-            (letterPanel.Controls[$"slovoTextBox{3}{1}"] as SlovoTextBox).Text = "А";
-            (letterPanel.Controls[$"slovoTextBox{3}{2}"] as SlovoTextBox).Text = "К";
-            (letterPanel.Controls[$"slovoTextBox{3}{3}"] as SlovoTextBox).Text = "У";
-            (letterPanel.Controls[$"slovoTextBox{3}{4}"] as SlovoTextBox).Text = "Л";
-            (letterPanel.Controls[$"slovoTextBox{3}{5}"] as SlovoTextBox).Text = "А";
+        //    (letterPanel.Controls[$"slovoTextBox{5}{1}"] as SlovoTextBox).Text = "Б";
+        //    (letterPanel.Controls[$"slovoTextBox{5}{2}"] as SlovoTextBox).Text = "О";
+        //    (letterPanel.Controls[$"slovoTextBox{5}{3}"] as SlovoTextBox).Text = "Н";
+        //    (letterPanel.Controls[$"slovoTextBox{5}{4}"] as SlovoTextBox).Text = "А";
+        //    (letterPanel.Controls[$"slovoTextBox{5}{5}"] as SlovoTextBox).Text = "Ь";
 
-            (letterPanel.Controls[$"slovoTextBox{4}{1}"] as SlovoTextBox).Text = "К";
-            (letterPanel.Controls[$"slovoTextBox{4}{2}"] as SlovoTextBox).Text = "У";
-            (letterPanel.Controls[$"slovoTextBox{4}{3}"] as SlovoTextBox).Text = "П";
-            (letterPanel.Controls[$"slovoTextBox{4}{4}"] as SlovoTextBox).Text = "И";
-            (letterPanel.Controls[$"slovoTextBox{4}{5}"] as SlovoTextBox).Text = "Т";
+        //}
 
-            (letterPanel.Controls[$"slovoTextBox{5}{1}"] as SlovoTextBox).Text = "Б";
-            (letterPanel.Controls[$"slovoTextBox{5}{2}"] as SlovoTextBox).Text = "О";
-            (letterPanel.Controls[$"slovoTextBox{5}{3}"] as SlovoTextBox).Text = "Н";
-            (letterPanel.Controls[$"slovoTextBox{5}{4}"] as SlovoTextBox).Text = "А";
-            (letterPanel.Controls[$"slovoTextBox{5}{5}"] as SlovoTextBox).Text = "Ь";
-        }
+        #endregion
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
@@ -191,8 +179,9 @@ namespace SlovoZaSlovo
                 control.Text = string.Empty;
                 control.Factor = FactorValueContainer.FactorProp[0];
             }
-            wordsListBox.DataSource = null; 
+            wordsListBox.DataSource = null;
             statusLabel.Text = string.Empty;
+            slovoTextBox11.Focus();
         }
 
         private void FormModified_Shown(object sender, EventArgs e)

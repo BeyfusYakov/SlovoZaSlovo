@@ -10,6 +10,7 @@ namespace SlovoZaSlovo
     {
         private string word = null;
         private TrieNode[] nodes = new TrieNode[32];
+        private static List<Point> ListOfPoints = new List<Point>();
 
         public void Add(string str, int ind)
         {
@@ -24,7 +25,26 @@ namespace SlovoZaSlovo
             nodes[cind].Add(str, ind + 1);
         }
 
-        public void FindWordsFunc(Point[,] board, int i, int j, bool[,] usedBoard, HashSet<Answer> ret, List<Point> ListOfPoints)
+        public static HashSet<Answer> FindWords(Point[,] board, TrieNode root)
+        {
+            var ret = new HashSet<Answer>();
+            int row = board.GetLength(0);
+            int col = board.GetLength(1);
+
+            var usedMap = new bool[row, col];
+
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    root.FindWordsFunc(board, i, j, usedMap, ret);
+                }
+            }
+
+            return ret;
+        }
+
+        public void FindWordsFunc(Point[,] board, int i, int j, bool[,] usedBoard, HashSet<Answer> ret)
         {
             if (i < 0 || i >= board.GetLength(0)) return;
             if (j < 0 || j >= board.GetLength(1)) return;
@@ -39,14 +59,14 @@ namespace SlovoZaSlovo
             var node = nodes[ind];
             if (node != null)
             {
-                node.FindWordsFunc(board, i - 1, j - 1, usedBoard, ret, ListOfPoints);
-                node.FindWordsFunc(board, i - 1, j, usedBoard, ret, ListOfPoints);
-                node.FindWordsFunc(board, i - 1, j + 1, usedBoard, ret, ListOfPoints);
-                node.FindWordsFunc(board, i, j + 1, usedBoard, ret, ListOfPoints);
-                node.FindWordsFunc(board, i + 1, j + 1, usedBoard, ret, ListOfPoints);
-                node.FindWordsFunc(board, i + 1, j, usedBoard, ret, ListOfPoints);
-                node.FindWordsFunc(board, i + 1, j - 1, usedBoard, ret, ListOfPoints);
-                node.FindWordsFunc(board, i, j - 1, usedBoard, ret, ListOfPoints);
+                node.FindWordsFunc(board, i - 1, j - 1, usedBoard, ret);
+                node.FindWordsFunc(board, i - 1, j, usedBoard, ret);
+                node.FindWordsFunc(board, i - 1, j + 1, usedBoard, ret);
+                node.FindWordsFunc(board, i, j + 1, usedBoard, ret);
+                node.FindWordsFunc(board, i + 1, j + 1, usedBoard, ret);
+                node.FindWordsFunc(board, i + 1, j, usedBoard, ret);
+                node.FindWordsFunc(board, i + 1, j - 1, usedBoard, ret);
+                node.FindWordsFunc(board, i, j - 1, usedBoard, ret);
             }
             usedBoard[i, j] = false;
             ListOfPoints.RemoveAt(ListOfPoints.Count-1); 

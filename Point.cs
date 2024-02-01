@@ -13,7 +13,7 @@ namespace SlovoZaSlovo
         public readonly int Y;
         public readonly char Val;
         public readonly int Factor;
-        public Point(int x, int y, char val, int factor = 0)
+        public Point(int x, int y, char val, byte factor = 0)
         {
             this.X = x;
             this.Y = y;

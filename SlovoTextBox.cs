@@ -16,7 +16,7 @@ namespace SlovoZaSlovo
     {
         public bool Highlight;
 
-        private FactorValueClass factor;// = FactorValueContainer.FactorProp[0];
+        private FactorValueClass factor;
 
         internal FactorValueClass Factor
         {
@@ -40,12 +40,11 @@ namespace SlovoZaSlovo
 
             void UCPaint(object sender, PaintEventArgs e)
             {
-                //if (sender is Panel)
                 if (Highlight)
                 {
                     var s = sender as Panel;
                     Rectangle rectangle = new Rectangle(s.Location.X, s.Location.Y, s.Width - 2, UCPanel.Height - 2);
-                    ControlPaint.DrawBorder(e.Graphics, /*this.ClientRectangle*/ rectangle, Color.Tomato, ButtonBorderStyle.Solid);
+                    ControlPaint.DrawBorder(e.Graphics, rectangle, Color.Tomato, ButtonBorderStyle.Solid);
                 }
             }
         }

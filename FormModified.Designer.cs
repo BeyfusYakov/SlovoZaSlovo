@@ -59,7 +59,6 @@ namespace SlovoZaSlovo
             slovoTextBox14 = new SlovoTextBox();
             slovoTextBox13 = new SlovoTextBox();
             slovoTextBox12 = new SlovoTextBox();
-            button1 = new Button();
             ClearButton = new Button();
             statusLabel = new Label();
             letterPanel.SuspendLayout();
@@ -67,10 +66,10 @@ namespace SlovoZaSlovo
             // 
             // startButton
             // 
-            startButton.Location = new System.Drawing.Point(217, 549);
+            startButton.Location = new System.Drawing.Point(128, 549);
             startButton.Margin = new Padding(5);
             startButton.Name = "startButton";
-            startButton.Size = new System.Drawing.Size(245, 65);
+            startButton.Size = new System.Drawing.Size(334, 65);
             startButton.TabIndex = 2;
             startButton.Text = "СТАРТ";
             startButton.UseVisualStyleBackColor = true;
@@ -320,20 +319,9 @@ namespace SlovoZaSlovo
             slovoTextBox12.Size = new System.Drawing.Size(80, 92);
             slovoTextBox12.TabIndex = 27;
             // 
-            // button1
-            // 
-            button1.Location = new System.Drawing.Point(17, 551);
-            button1.Margin = new Padding(5);
-            button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(91, 61);
-            button1.TabIndex = 49;
-            button1.Text = "Заполнить";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // ClearButton
             // 
-            ClearButton.Location = new System.Drawing.Point(117, 551);
+            ClearButton.Location = new System.Drawing.Point(26, 551);
             ClearButton.Name = "ClearButton";
             ClearButton.Size = new System.Drawing.Size(94, 61);
             ClearButton.TabIndex = 51;
@@ -357,7 +345,6 @@ namespace SlovoZaSlovo
             ClientSize = new System.Drawing.Size(1067, 692);
             Controls.Add(statusLabel);
             Controls.Add(ClearButton);
-            Controls.Add(button1);
             Controls.Add(letterPanel);
             Controls.Add(wordsListBox);
             Controls.Add(startButton);
@@ -399,7 +386,6 @@ namespace SlovoZaSlovo
         private SlovoTextBox slovoTextBox14;
         private SlovoTextBox slovoTextBox13;
         private SlovoTextBox slovoTextBox12;
-        private System.Windows.Forms.Button button1;
         private Button ClearButton;
         private Label statusLabel;
     }
