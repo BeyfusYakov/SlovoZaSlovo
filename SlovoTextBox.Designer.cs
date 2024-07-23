@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace SlovoZaSlovo
 {
@@ -88,6 +89,9 @@ namespace SlovoZaSlovo
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(UCPanel);
+            //****//
+            Factor = new FactorValueClass(0, "", Color.Black);
+            //****//
             Margin = new Padding(4, 5, 4, 5);
             Name = "SlovoTextBox";
             Size = new Size(80, 92);

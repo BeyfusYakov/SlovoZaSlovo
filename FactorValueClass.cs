@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SlovoZaSlovo
 {
-    internal class FactorValueClass
+    public class FactorValueClass
     {
         public readonly byte Id;
         public readonly string Name;
@@ -23,7 +23,7 @@ namespace SlovoZaSlovo
         }
     }
 
-    internal static class FactorValueContainer 
+    public static class FactorValueContainer 
     {
         private static int CurInd = 0;
 

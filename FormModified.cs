@@ -114,7 +114,11 @@ namespace SlovoZaSlovo
                 {
                     if (!string.IsNullOrEmpty((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text))
                     {
-                        board[i, j] = new Point(i, j, Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text), (letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor.Id);
+                        char ch = Convert.ToChar((letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Text);
+                        byte fac = (letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor.Id;
+                        //board[i, j] = new Point(i, j, ch, (letterPanel.Controls[$"slovoTextBox{i + 1}{j + 1}"] as SlovoTextBox).Factor.Id);
+                        board[i, j] = new Point(i, j, ch, fac);
+
                     }
                     else
                     {

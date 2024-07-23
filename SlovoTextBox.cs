@@ -18,7 +18,7 @@ namespace SlovoZaSlovo
 
         private FactorValueClass factor;
 
-        internal FactorValueClass Factor
+        public FactorValueClass Factor
         {
             get => factor;
             set
